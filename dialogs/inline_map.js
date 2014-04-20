@@ -239,7 +239,19 @@ CKEDITOR.dialog.add('inline_map', function(editor) {
               id: 'map_mini',
               className: 'minimap',
               label: 'Include MiniMap',
-              'default': 'checked',
+
+              // This will execute also every time you edit/double-click the widget.
+              setup: function(widget) {
+                // Set the MiniMap check button.
+                if (widget.element.data('minimap') != "" && widget.element.data('minimap') != "on") {
+                  this.setValue('');
+                }
+
+                else {
+                  // Set the default value.
+                  this.setValue('true');
+                }
+              },
             }
           ]
         },
