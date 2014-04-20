@@ -19,6 +19,7 @@ This plugin utilizes the following technologies/libraries: <br><ul>
 <li><a href="http://leafletjs.com/">Leaflet JS</a></li>
 <li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
 <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
+</ul><br>
 
 ROAD MAP (Planned stuff to do):<br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
@@ -33,7 +34,7 @@ ROAD MAP (Planned stuff to do):<br><ul>
 <li>Has option to add Panoromio (panoramio.com) layer.</li>
 <li>Add other tile providers.</li>
 <li>R&D other Leaflet plugins that might be useful.</li>
-</ul><br><br>
+</ul><br>
 
 LICENSE and CREDITS:<br>
 
