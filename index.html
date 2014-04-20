@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Simple Page with CKEditor</title>
+        <!-- Make sure the path to CKEditor is correct. -->
+        <script src="ckeditor/ckeditor.js"></script>
+       <!-- <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>-->
+        <!--<script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>-->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+
+    </head>
+    <body>
+        <form>
+            <!--<input type="text" id="search"><br>-->
+            <textarea name="my_editor" id="my_editor" rows="5" cols="20">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+            <script>
+                //var input = document.getElementById("search");
+
+                // Bind the Search field to the Autocomplete widget.
+                //autocomplete = new google.maps.places.Autocomplete(input);
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace('my_editor',
+                    {/*toolbar :
+                        [
+                            ['Source'],
+                            ['Bold','Italic','Underline','Strike'],
+                        ],*/
+                    height: 800,
+                    width: 1000,
+                });
+            </script>
+        </form>
+    </body>
+</html>
