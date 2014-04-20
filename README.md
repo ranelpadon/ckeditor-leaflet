@@ -12,27 +12,28 @@ INSTALLATION:<br>
 
 This Leaflet Map plugin leverages the power of Widget API. Hence, the 'widget' plugin is also a hard dependency. Download the Widget plugin here: http://ckeditor.com/addon/widget, then follow again the installation procedure above.<br>
 
-This plugin utilizes the following technologies/libraries: <br>
-1.) <a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">Widget API</a><br>
-2.) <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a><br>
-3.) <a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a><br>
-4.) <a href="http://leafletjs.com/">Leaflet JS</a><br>
-5.) <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a><br>
-6.) <a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a><br>
+This plugin utilizes the following technologies/libraries: <br><ul>
+<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">Widget API</a></li>
+<li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
+<li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
+<li><a href="http://leafletjs.com/">Leaflet JS</a></li>
+<li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
+<li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
 
-ROAD MAP (Planned stuff to do):<br>
-Option to show the cursor's map coordinates and scale bar.<br>
-Marker could be dragged and its dragged position must be saved.<br>
-State of the panned map's view must be saved.<br>
-Options to specify map width and height.
-Responsive behavior (for mobile pages).
-Ability to Add Map Caption/Annotation
-Display the map preview in the Dialog window.<br>
-Handle multiple markers.<br>
-Add and delete markers.<br>
-Has option to add Panoromio (panoramio.com) layer.<br>
-Add other tile providers.<br>
-R&D other Leaflet plugins that might be useful.<br>
+ROAD MAP (Planned stuff to do):<br><ul>
+<li>Option to show the cursor's map coordinates and scale bar.</li>
+<li>Marker could be dragged and its dragged position must be saved.</li>
+<li>State of the panned map's view must be saved.</li>
+<li>Options to specify map width and height.
+<li>Responsive behavior (for mobile pages).
+<li>Ability to Add Map Caption/Annotation
+<li>Display the map preview in the Dialog window.</li>
+<li>Handle multiple markers.</li>
+<li>Add and delete markers.</li>
+<li>Has option to add Panoromio (panoramio.com) layer.</li>
+<li>Add other tile providers.</li>
+<li>R&D other Leaflet plugins that might be useful.</li>
+</ul><br><br>
 
 LICENSE and CREDITS:<br>
 
