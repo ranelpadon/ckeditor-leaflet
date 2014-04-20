@@ -64,15 +64,18 @@
 
         // Declare the elements to be upcasted back.
         // Otherwise, the widget's code will be ignored.
+        // Basically, we will allow div's 'widget_div' class
+        // and iframe's 'widget_iframe' class, and then include
+        // all their attributes.
         // Read more about the Advanced Content Filter here:
         // * http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter
         // * http://docs.ckeditor.com/#!/guide/plugin_sdk_integration_with_acf
-        allowedContent: 'div(!inline_widget); ' + 'iframe(!leaflet); ',
+        allowedContent: 'div(!widget_div)[*];' + 'iframe(!widget_iframe)[*];',
 
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
-          '<div id="map_widget_wrapper" class="inline_widget" data-lat="" data-lon="" data-zoom="" data-tile="" data-minimap=""></div>',
+          '<div id="widget_div_map" class="widget_div" data-lat="" data-lon="" data-zoom="" data-tile="" data-minimap=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a
@@ -85,7 +88,7 @@
 
           // Get the zoom level's snapshot because the current user
           // might have changed it via mouse events or via the zoom bar.
-          zoomIframe = editor.document.$.getElementById("map_widget_iframe").contentDocument.getElementById("map_container").getAttribute("data-zoom");
+          zoomIframe = editor.document.$.getElementById("widget_iframe_map").contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
           if (zoomIframe != zoomSaved) {
             // Update the saved zoom value in data attribute.
@@ -105,10 +108,10 @@
             mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
             // Update also the iframe's 'src' attributes.
-            // Updating 'cke-saved-src' is also required for
+            // Updating 'data-cke-saved-src' is also required for
             // internal use of CKEditor.
             element.children[0].attributes["src"] = mapParserPathFull;
-            element.children[0].attributes["cke-saved-src"] = mapParserPathFull;
+            element.children[0].attributes["data-cke-saved-src"] = mapParserPathFull;
           }
 
           // Return the DOM's textual representation.
@@ -123,7 +126,7 @@
           // it means that it's a widget and we need to convert it properly
           // to its original structure.
           // Basically, it says to CKEditor which div is a widget.
-          if (element.name == 'div' && element.hasClass('inline_widget')) {
+          if (element.name == 'div' && element.hasClass('widget_div')) {
             return element;
           }
         },
@@ -133,7 +136,7 @@
       // which is also bound to the Dialog command.
       // Apparently, this is required just like their plugin counterpart.
       editor.ui.addButton('leaflet', {
-        label : 'Create an Inline Map Widget',
+        label : 'Insert a Leaflet map.',
         command : 'leaflet',
         icon : this.path + 'icons/leaflet.png'
       });

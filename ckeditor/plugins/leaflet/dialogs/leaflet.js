@@ -3,7 +3,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
   // Dialog's function callback for the Leaflet Widget.
   return {
-    title: 'Create/Edit Inline Map',
+    title: 'Create/Edit Leaflet Map',
     minWidth: 150,
     minHeight: 120,
 
@@ -70,6 +70,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 jQuery('.longitude input').val(longitude);
               }
 
+              // Handle queries with no results or have some
+              // malformed parameters.
               else {
                 alert("The Place could not be Geocoded properly. Kindly choose another one.")
               }
@@ -117,7 +119,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               type: 'select',
               label: 'Zoom Level',
               width: '70px',
-              items: [['5'], ['6'], ['7'], ['8'], ['9'], ['10'], ['11'], ['12'], ['13'], ['14'], ['15'], ['16'], ['17'], ['18'], ['19'], ['20']],
+              items: [['1'], ['2'], ['3'], ['4'],['5'], ['6'], ['7'], ['8'], ['9'], ['10'], ['11'], ['12'], ['13'], ['14'], ['15'], ['16'], ['17'], ['18'], ['19'], ['20']],
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
@@ -130,7 +132,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                   // Get the zoom level's snapshot because the current user
                   // might have changed it via mouse events or via the zoom bar.
-                  zoomIframe = editor.document.$.getElementById("map_widget_iframe").contentDocument.getElementById("map_container").getAttribute("data-zoom");
+                  zoomIframe = editor.document.$.getElementById("widget_iframe_map").contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
                   if (zoomIframe != zoomSaved) {
                     // Update the saved zoom value in data attribute.
@@ -216,16 +218,16 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                       scrolling: 'no',
                       // 'id' is very useful when accessing the zoom level
                       // snapshot of the map
-                      id:"map_widget_iframe",
-                      class: "leaflet",
+                      id:"widget_iframe_map",
+                      class: "widget_iframe",
                       width: "600px",
                       height: "600px",
                       frameborder: 0,
                       allowTransparency: true,
                       src: mapParserPathFull,
-                      // Note that 'cke-saved-src' is a required attribute
+                      // Note that 'data-cke-saved-src' is a required attribute
                       // in CKEditor to bypass browsers' issues with 'src'.
-                      "cke-saved-src": mapParserPathFull
+                      "data-cke-saved-src": mapParserPathFull
                     });
 
                     // Insert the iframe to the widget's DIV element.
