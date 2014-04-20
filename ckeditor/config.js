@@ -42,5 +42,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// dinagdag
 	config.extraPlugins = 'simplebox,leaflet,sourcearea';
 
-	config.extraAllowedContent = '*(*){*}[*]';
+	//config.extraAllowedContent = '*(*){*}[*]';
 };
