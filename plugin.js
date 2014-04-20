@@ -43,31 +43,31 @@
   CKEDITOR.scriptLoader.load('http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&callback=dummy');
 
   // Add a new CKEditor plugin. Note that widgets are subclass of plugins.
-  CKEDITOR.plugins.add('inline_map', {
+  CKEDITOR.plugins.add('leaflet', {
     // Declare dependencies.
     requires: 'widget',
 
     init: function(editor) {
       // Declare a new Dialog for interactive selection of
       // map parameters. It's still not bound to any widget at this moment.
-      CKEDITOR.dialog.add('inline_map', this.path + 'dialogs/inline_map.js');
+      CKEDITOR.dialog.add('leaflet', this.path + 'dialogs/leaflet.js');
 
        // For reusability, declare a global variable pointing to the map script path
       // that will build and render the map.
       // In JavaScript, relative path must include the leading slash.
-      mapParserPath = CKEDITOR.getUrl(this.path + 'scripts/map_parser.html');
+      mapParserPath = CKEDITOR.getUrl(this.path + 'scripts/mapParser.html');
 
       // Declare a new widget.
-      editor.widgets.add('inline_map', {
+      editor.widgets.add('leaflet', {
         // Bind the widget to the Dialog command.
-        dialog: 'inline_map',
+        dialog: 'leaflet',
 
         // Declare the elements to be upcasted back.
         // Otherwise, the widget's code will be ignored.
         // Read more about the Advanced Content Filter here:
         // * http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter
         // * http://docs.ckeditor.com/#!/guide/plugin_sdk_integration_with_acf
-        allowedContent: 'div(!inline_widget); ' + 'iframe(!inline_map); ',
+        allowedContent: 'div(!inline_widget); ' + 'iframe(!leaflet); ',
 
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
@@ -119,7 +119,7 @@
         // from CKEditor's Source Mode to View Mode.
         // The reverse of downcast() method.
         upcast: function(element) {
-          // If we encounter a div with a class of 'inline_map',
+          // If we encounter a div with a class of 'leaflet',
           // it means that it's a widget and we need to convert it properly
           // to its original structure.
           // Basically, it says to CKEditor which div is a widget.
@@ -132,10 +132,10 @@
       // Add the widget button in the toolbar and bind the widget command,
       // which is also bound to the Dialog command.
       // Apparently, this is required just like their plugin counterpart.
-      editor.ui.addButton('inline_map', {
+      editor.ui.addButton('leaflet', {
         label : 'Create an Inline Map Widget',
-        command : 'inline_map',
-        icon : this.path + 'icons/inline_map.png'
+        command : 'leaflet',
+        icon : this.path + 'icons/leaflet.png'
       });
 
       // Append the widget's styles when in the CKEditor edit page,

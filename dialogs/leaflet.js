@@ -1,4 +1,4 @@
-CKEDITOR.dialog.add('inline_map', function(editor) {
+CKEDITOR.dialog.add('leaflet', function(editor) {
 
 
   // Dialog's function callback for the Leaflet Widget.
@@ -217,7 +217,7 @@ CKEDITOR.dialog.add('inline_map', function(editor) {
                       // 'id' is very useful when accessing the zoom level
                       // snapshot of the map
                       id:"map_widget_iframe",
-                      class: "inline_map",
+                      class: "leaflet",
                       width: "600px",
                       height: "600px",
                       frameborder: 0,
