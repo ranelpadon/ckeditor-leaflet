@@ -1,21 +1,20 @@
 CKEDITOR.dialog.add('leaflet', function(editor) {
-
-
   // Dialog's function callback for the Leaflet Widget.
   return {
     title: 'Create/Edit Leaflet Map',
-    minWidth: 150,
-    minHeight: 120,
+    minWidth: 350,
+    minHeight: 125,
 
     contents: [{
-      // Create a 'map_dialog' tab.
-      id: 'map_dialog',
+      // Create a Location tab.
+      id: 'location_tab',
+      label: 'Location',
       elements: [
         {
           id: 'map_geocode',
           className: 'geocode',
           type: 'text',
-          label: 'Search the Place name.',
+          label: 'Auto-Search of Coordinates.',
           width: '350px',
           setup: function(widget) {
             this.setValue("");
@@ -46,44 +45,18 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
         },
 
         {
-          type: 'button',
-          id: 'map_search',
-          className: 'search',
-          label: 'Retrieve the Place\'s coordinates.',
-          onClick: function() {
-            // Retrieve the value in the Search field.
-            var geocode = jQuery('.geocode input').val();
-
-            // No need to call the encodeURI().
-            geocodingRequest = "https://maps.googleapis.com/maps/api/geocode/json?address=" + geocode + "&sensor=false";
-
-            // Geocode the retrieved place name.
-            jQuery.getJSON(geocodingRequest, function(data) {
-              if (data["status"] != "ZERO_RESULTS") {
-                // Get the Latitude and Longitude object in the
-                // returned JSON object.
-                latitude = data.results[0].geometry.location.lat;
-                longitude = data.results[0].geometry.location.lng;
-
-                // Update the corresponding Lat/Lon text fields.
-                jQuery('.latitude input').val(latitude);
-                jQuery('.longitude input').val(longitude);
-              }
-
-              // Handle queries with no results or have some
-              // malformed parameters.
-              else {
-                alert("The Place could not be Geocoded properly. Kindly choose another one.")
-              }
-            });
-          }
+          type: 'html',
+          id: 'map_label',
+          className: 'label',
+          style: 'margin-bottom: -10px;',
+          html: '<p>Manual Input of Coordinates:</p>'
         },
 
         {
           // Create a new horizontal group.
           type: 'hbox',
           // Set the relative widths of Latitude, Longitude and Zoom fields.
-          widths: [ '38%', '38%', '24%' ],
+          widths: [ '50%', '50%' ],
           children: [
             {
               id: 'map_latitude',
@@ -107,6 +80,53 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Set the Lat values if widget has previous value.
                 if (widget.element.data('lon') != "") {
                   this.setValue(widget.element.data('lon'));
+                }
+              },
+            },
+          ]
+        },
+      ]
+      },
+
+      {
+      // Create an Options tab.
+      id: 'options_tab',
+      label: 'Options',
+      elements: [
+        {
+          // Create a new horizontal group.
+          type: 'hbox',
+          // Set the relative widths of Latitude, Longitude and Zoom fields.
+          widths: [ '38%', '38%', '24%' ],
+          children: [
+            {
+              id: 'width',
+              className: 'map_width',
+              type: 'text',
+              label: 'Map Width',
+              setup: function(widget) {
+                // Set a diffused/default text for better user experience.
+                jQuery(".map_width input").attr("placeholder", "400")
+
+                // Set the map width value if widget has a previous value.
+                if (widget.element.data('width') != "") {
+                  this.setValue(widget.element.data('width'));
+                }
+              },
+            },
+
+            {
+              id: 'height',
+              className: 'map_height',
+              type: 'text',
+              label: 'Map Height',
+              setup: function(widget) {
+                // Set a diffused/default text for better user experience.
+                jQuery(".map_height input").attr("placeholder", "400")
+
+                // Set the map height value if widget has a previous value.
+                if (widget.element.data('height') != "") {
+                  this.setValue(widget.element.data('height'));
                 }
               },
             },
@@ -144,7 +164,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                 // Set the Default Zoom Level value.
                 else {
-                  this.setValue("8");
+                  this.setValue("10");
                 }
               },
             }
@@ -163,7 +183,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               type: 'select',
               id: 'map_tile',
               className: 'tile',
-              label: 'Select Base Map Tile',
+              label: 'Base Map Tile',
               items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.WorldTopoMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
 
               // This will execute also every time you edit/double-click the widget.

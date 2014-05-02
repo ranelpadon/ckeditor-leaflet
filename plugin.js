@@ -1,6 +1,6 @@
 /**
  * @file plugin.js
- * Insert Inline map widget for CKEditor.
+ * Inline Leaflet map widget for CKEditor.
  * .
  */
 (function() {
@@ -143,7 +143,7 @@
 
       // Append the widget's styles when in the CKEditor edit page,
       // added for better user experience.
-      // Assign or append the widget's styles depeding on the existing setup.
+      // Assign or append the widget's styles depending on the existing setup.
       if (typeof editor.config.contentsCss == 'object') {
           editor.config.contentsCss.push(CKEDITOR.getUrl(this.path + 'css/contents.css'));
       }
