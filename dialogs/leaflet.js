@@ -2,7 +2,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
   // Dialog's function callback for the Leaflet Widget.
   return {
     title: 'Create/Edit Leaflet Map',
-    minWidth: 350,
+    minWidth: 320,
     minHeight: 125,
 
     contents: [{
@@ -15,7 +15,6 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           className: 'geocode',
           type: 'text',
           label: 'Auto-Search of Coordinates.',
-          width: '350px',
           setup: function(widget) {
             this.setValue("");
           },
@@ -44,7 +43,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           },
         },
 
-        {
+        { // Dummy element serving as label/text container only.
           type: 'html',
           id: 'map_label',
           className: 'label',
@@ -148,11 +147,11 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 if (widget.element.data('zoom') != "") {
                   // Get the previously saved zoom value data attribute.
                   // It will be compared to the current value in the map view.
-                  zoomSaved = widget.element.data('zoom');
+                  var zoomSaved = widget.element.data('zoom');
 
                   // Get the zoom level's snapshot because the current user
                   // might have changed it via mouse events or via the zoom bar.
-                  zoomIframe = editor.document.$.getElementById("widget_iframe_map").contentDocument.getElementById("map_container").getAttribute("data-zoom");
+                  var zoomIframe = widget.element.getChild(0).$.contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
                   if (zoomIframe != zoomSaved) {
                     // Update the saved zoom value in data attribute.
@@ -178,7 +177,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           widths: [ '50%', '50%' ],
           children: [
             {
-              // Create a select list for City.
+              // Create a select list for map tiles.
               // 'className' attribute is used for targeting this element in jQuery.
               type: 'select',
               id: 'map_tile',
@@ -205,54 +204,94 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Remove the iframe if it has one.
                 widget.element.setHtml('');
 
-                // Get the Lat/Lon values from the corresponding fields.
-                latitude = jQuery('.latitude input').val();
-                longitude = jQuery('.longitude input').val();
+                // Retrieve the value in the Search field.
+                var geocode = jQuery('.geocode input').val();
+                var latitude, longitude;
 
-                if (latitude != "" && longitude != "") {
-                    zoom = jQuery('select.zoom').val();
-                    tile = jQuery('select.tile').val();
-                    // Returns 'on' or 'undefined'.
-                    minimap = jQuery('.minimap input:checked').val();
+                if (geocode != "") {
+                  // No need to call the encodeURIComponent().
+                  var geocodingRequest = "https://maps.googleapis.com/maps/api/geocode/json?address=" + geocode + "&sensor=false";
 
-                    // Use 'off' if the MiniMap checkbox is unchecked.
-                    if (minimap == undefined) {
-                      minimap = 'off';
+                  // Disable the asynchoronous behavior temporarily so that
+                  // waiting for results will happen before proceeding
+                  // to the next statements.
+                  jQuery.ajaxSetup({
+                    async: false
+                  });
+
+                  // Geocode the retrieved place name.
+                  jQuery.getJSON(geocodingRequest, function(data) {
+                    if (data["status"] != "ZERO_RESULTS") {
+                      // Get the Latitude and Longitude object in the
+                      // returned JSON object.
+                      latitude = data.results[0].geometry.location.lat;
+                      longitude = data.results[0].geometry.location.lng;
                     }
 
-                    // Set/Update the widget's data attributes.
-                    widget.element.data('lat', latitude);
-                    widget.element.data('lon', longitude);
-                    widget.element.data('zoom', zoom);
-                    widget.element.data('tile', tile);
-                    widget.element.data('minimap', minimap);
-
-                    // Build the full path to the map renderer.
-                    mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
-
-                    // Create a new CKEditor DOM's iFrame.
-                    iframe = new CKEDITOR.dom.element('iframe');
-
-                    // Setup the iframe characteristics.
-                    iframe.setAttributes({
-                      scrolling: 'no',
-                      // 'id' is very useful when accessing the zoom level
-                      // snapshot of the map
-                      id:"widget_iframe_map",
-                      class: "widget_iframe",
-                      width: "600px",
-                      height: "600px",
-                      frameborder: 0,
-                      allowTransparency: true,
-                      src: mapParserPathFull,
-                      // Note that 'data-cke-saved-src' is a required attribute
-                      // in CKEditor to bypass browsers' issues with 'src'.
-                      "data-cke-saved-src": mapParserPathFull
-                    });
-
-                    // Insert the iframe to the widget's DIV element.
-                    widget.element.append(iframe);
+                    // Handle queries with no results or have some
+                    // malformed parameters.
+                    else {
+                      alert("The Place could not be Geocoded properly. Kindly choose another one.")
+                    }
+                  });
                 }
+
+                // Get the Lat/Lon values from the corresponding fields.
+                var latitude_input = jQuery('.latitude input').val();
+                var longitude_input = jQuery('.longitude input').val();
+
+                if (latitude_input != "" && longitude_input != "") {
+                  latitude = latitude_input;
+                  longitude = longitude_input;
+                }
+
+                var width = jQuery(".map_width input").val() || "400";
+                var height = jQuery(".map_height input").val() || "400";
+                var zoom = jQuery('select.zoom').val();
+                var tile = jQuery('select.tile').val();
+
+                // Returns 'on' or 'undefined'.
+                var minimap = jQuery('.minimap input:checked').val();
+
+                // Use 'off' if the MiniMap checkbox is unchecked.
+                if (minimap == undefined) {
+                  minimap = 'off';
+                }
+
+                // Set/Update the widget's data attributes.
+                widget.element.data('lat', latitude);
+                widget.element.data('lon', longitude);
+                widget.element.data('width', width);
+                widget.element.data('height', height);
+                widget.element.data('zoom', zoom);
+                widget.element.data('tile', tile);
+                widget.element.data('minimap', minimap);
+
+                // Build the full path to the map renderer.
+                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+
+                // Create a new CKEditor DOM's iFrame.
+                iframe = new CKEDITOR.dom.element('iframe');
+
+                // Setup the iframe characteristics.
+                iframe.setAttributes({
+                  scrolling: 'no',
+                  // 'id' is very useful when accessing the zoom level
+                  // snapshot of the map
+                  id:"widget_iframe_map",
+                  class: "widget_iframe",
+                  width: width + "px",
+                  height: height + "px",
+                  frameborder: 0,
+                  allowTransparency: true,
+                  src: mapParserPathFull,
+                  // Note that 'data-cke-saved-src' is a required attribute
+                  // in CKEditor to bypass browsers' issues with 'src'.
+                  "data-cke-saved-src": mapParserPathFull
+                });
+
+                // Insert the iframe to the widget's DIV element.
+                widget.element.append(iframe);
               },
             },
 

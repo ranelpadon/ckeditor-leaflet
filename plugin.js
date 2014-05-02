@@ -75,7 +75,7 @@
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
-          '<div id="widget_div_map" class="widget_div" data-lat="" data-lon="" data-zoom="" data-tile="" data-minimap=""></div>',
+          '<div id="widget_div_map" class="widget_div" data-lat="" data-lon="" data-width="" data-height="" data-zoom="" data-tile="" data-minimap=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a
@@ -84,11 +84,11 @@
           // Note that 'element' here refers to the DIV widget.
           // Get the previously saved zoom value data attribute.
           // It will be compared to the current value in the map view.
-          zoomSaved = element.attributes["data-zoom"];
+          var zoomSaved = element.attributes["data-zoom"];
 
           // Get the zoom level's snapshot because the current user
           // might have changed it via mouse events or via the zoom bar.
-          zoomIframe = editor.document.$.getElementById("widget_iframe_map").contentDocument.getElementById("map_container").getAttribute("data-zoom");
+          var zoomIframe = widget.element.getChild(0).$.contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
           if (zoomIframe != zoomSaved) {
             // Update the saved zoom value in data attribute.
@@ -98,14 +98,16 @@
             // updating the full path of the map.
             // We included the possibility of updates in LAT and LON values
             // also to handle the draggable markers.
-            latitude = element.attributes["data-lat"];
-            longitude = element.attributes["data-lon"];
-            zoom = element.attributes["data-zoom"];
-            tile = element.attributes["data-tile"];
-            minimap = element.attributes["data-minimap"];
+            var latitude = element.attributes["data-lat"];
+            var longitude = element.attributes["data-lon"];
+            var width = element.attributes["data-width"];
+            var height = element.attributes["data-height"];
+            var zoom = element.attributes["data-zoom"];
+            var tile = element.attributes["data-tile"];
+            var minimap = element.attributes["data-minimap"];
 
             // Build the updated full path to the map renderer.
-            mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+            mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
             // Update also the iframe's 'src' attributes.
             // Updating 'data-cke-saved-src' is also required for
