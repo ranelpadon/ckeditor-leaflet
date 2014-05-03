@@ -30,7 +30,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             // the widgets dialog window.
             // Basically, we want to override the z-index of the
             // Seach Autocomplete list, in which the styling is being set
-            // in real-time by Google's.
+            // in real-time by Google.
             // Make a new DOM element.
             var stylesheet = jQuery('<style type="text/css" />');
 
@@ -143,7 +143,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
                 // Set this Zoom Level's select list when
-                // a City has been initialized and set previously.
+                // the current location has been initialized and set previously.
                 if (widget.element.data('zoom') != "") {
                   // Get the previously saved zoom value data attribute.
                   // It will be compared to the current value in the map view.

@@ -95,16 +95,17 @@
 
           // Get the zoom level's snapshot because the current user
           // might have changed it via mouse events or via the zoom bar.
+          // Basically, get the zoom level of a map embedded
+          // in this specific iframe and widget.
           zoomIframe = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
+          // In case there are changes in zoom level.
           if (zoomIframe != zoomSaved) {
             // Update the saved zoom value in data attribute.
             element.attributes["data-zoom"] = zoomIframe;
 
             // Fetch the data attributes needed for
             // updating the full path of the map.
-            // We included the possibility of updates in LAT and LON values
-            // also to handle the draggable markers.
             var latitude = element.attributes["data-lat"];
             var longitude = element.attributes["data-lon"];
             var width = element.attributes["data-width"];
@@ -134,7 +135,7 @@
           // If we encounter a div with a class of 'leaflet',
           // it means that it's a widget and we need to convert it properly
           // to its original structure.
-          // Basically, it says to CKEditor which div is a widget.
+          // Basically, it says to CKEditor which div is a valid widget.
           if (element.name == 'div' && element.hasClass('leaflet_div')) {
             return element;
           }
