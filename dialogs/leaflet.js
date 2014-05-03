@@ -237,12 +237,23 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 }
 
                 // Get the Lat/Lon values from the corresponding fields.
-                var latitude_input = jQuery('.latitude input').val();
-                var longitude_input = jQuery('.longitude input').val();
+                var latInput = jQuery('.latitude input').val();
+                var lonInput = jQuery('.longitude input').val();
 
-                if (latitude_input != "" && longitude_input != "") {
-                  latitude = latitude_input;
-                  longitude = longitude_input;
+                // Get the data-lat and data-lon values.
+                // It is empty for yet to be created widgets.
+                var latSaved = widget.element.data('lat');
+                var lonSaved = widget.element.data('lon');
+
+                // Used the inputted values if it's not empty or
+                // not equal to the previously saved values.
+                // latSaved and lonSaved are initially empty also
+                // for widgets that are yet to be created.
+                // Or if the user edited an existing map, and did not edit
+                // the lat/lon fields, and the Search field is empty.
+                if ((latInput != "" && lonInput != "") && ((latInput != latSaved && lonInput != lonSaved) || geocode == "")) {
+                  latitude = latInput;
+                  longitude = lonInput;
                 }
 
                 var width = jQuery(".map_width input").val() || "400";
