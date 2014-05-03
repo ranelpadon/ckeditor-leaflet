@@ -183,7 +183,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_tile',
               className: 'tile',
               label: 'Base Map Tile',
-              items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.WorldTopoMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
+              items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.DeLorme'], ['Esri.NatGeoWorldMap'], ['Esri.WorldPhysical'], ['Esri.WorldTopoMap'], ['Thunderforest.OpenCycleMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
@@ -275,23 +275,19 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
                 // Create a new CKEditor DOM's iFrame.
-                iframe = new CKEDITOR.dom.element('iframe');
+                var iframe = new CKEDITOR.dom.element('iframe');
 
                 // Setup the iframe characteristics.
                 iframe.setAttributes({
-                  scrolling: 'no',
-                  // 'id' is very useful when accessing the zoom level
-                  // snapshot of the map
-                  id:"leaflet_iframe-" + milliseconds,
-                  class: "leaflet_iframe",
-                  width: width + "px",
-                  height: height + "px",
-                  frameborder: 0,
-                  allowTransparency: true,
-                  src: mapParserPathFull,
-                  // Note that 'data-cke-saved-src' is a required attribute
-                  // in CKEditor to bypass browsers' issues with 'src'.
-                  "data-cke-saved-src": mapParserPathFull
+                  'scrolling': 'no',
+                  'id': 'leaflet_iframe-' + milliseconds,
+                  'class': 'leaflet_iframe',
+                  'width': width + 'px',
+                  'height': height + 'px',
+                  'frameborder': 0,
+                  'allowTransparency': true,
+                  'src': mapParserPathFull,
+                  'data-cke-saved-src': mapParserPathFull
                 });
 
                 // Insert the iframe to the widget's DIV element.
