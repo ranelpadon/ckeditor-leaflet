@@ -183,7 +183,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_tile',
               className: 'tile',
               label: 'Base Map Tile',
-              items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.WorldTopoMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
+              items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.DeLorme'], ['Esri.NatGeoWorldMap'], ['Esri.WorldPhysical'], ['Esri.WorldTopoMap'], ['Thunderforest.OpenCycleMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
@@ -237,12 +237,23 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 }
 
                 // Get the Lat/Lon values from the corresponding fields.
-                var latitude_input = jQuery('.latitude input').val();
-                var longitude_input = jQuery('.longitude input').val();
+                var latInput = jQuery('.latitude input').val();
+                var lonInput = jQuery('.longitude input').val();
 
-                if (latitude_input != "" && longitude_input != "") {
-                  latitude = latitude_input;
-                  longitude = longitude_input;
+                // Get the data-lat and data-lon values.
+                // It is empty for yet to be created widgets.
+                var latSaved = widget.element.data('lat');
+                var lonSaved = widget.element.data('lon');
+
+                // Used the inputted values if it's not empty or
+                // not equal to the previously saved values.
+                // latSaved and lonSaved are initially empty also
+                // for widgets that are yet to be created.
+                // Or if the user edited an existing map, and did not edit
+                // the lat/lon fields, and the Search field is empty.
+                if ((latInput != "" && lonInput != "") && ((latInput != latSaved && lonInput != lonSaved) || geocode == "")) {
+                  latitude = latInput;
+                  longitude = lonInput;
                 }
 
                 var width = jQuery(".map_width input").val() || "400";
@@ -275,23 +286,19 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
                 // Create a new CKEditor DOM's iFrame.
-                iframe = new CKEDITOR.dom.element('iframe');
+                var iframe = new CKEDITOR.dom.element('iframe');
 
                 // Setup the iframe characteristics.
                 iframe.setAttributes({
-                  scrolling: 'no',
-                  // 'id' is very useful when accessing the zoom level
-                  // snapshot of the map
-                  id:"leaflet_iframe-" + milliseconds,
-                  class: "leaflet_iframe",
-                  width: width + "px",
-                  height: height + "px",
-                  frameborder: 0,
-                  allowTransparency: true,
-                  src: mapParserPathFull,
-                  // Note that 'data-cke-saved-src' is a required attribute
-                  // in CKEditor to bypass browsers' issues with 'src'.
-                  "data-cke-saved-src": mapParserPathFull
+                  'scrolling': 'no',
+                  'id': 'leaflet_iframe-' + milliseconds,
+                  'class': 'leaflet_iframe',
+                  'width': width + 'px',
+                  'height': height + 'px',
+                  'frameborder': 0,
+                  'allowTransparency': true,
+                  'src': mapParserPathFull,
+                  'data-cke-saved-src': mapParserPathFull
                 });
 
                 // Insert the iframe to the widget's DIV element.
