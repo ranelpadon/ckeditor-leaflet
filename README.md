@@ -25,7 +25,6 @@ This plugin utilizes the following technologies/libraries: <br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
 <li>Marker could be dragged and its dragged position must be saved.</li>
 <li>State of the panned map's view must be saved.</li>
-<li>Options to specify map width and height.
 <li>Responsive behavior (for mobile pages).
 <li>Ability to add map caption/annotation
 <li>Display the map preview in the Dialog window.</li>
