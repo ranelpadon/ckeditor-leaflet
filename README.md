@@ -13,7 +13,7 @@ Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/inde
 This Leaflet Map plugin leverages the power of Widget API. Hence, the 'widget' plugin is also a hard dependency. Download the Widget plugin here: http://ckeditor.com/addon/widget, then follow again the installation procedure above.<br>
 
 This plugin utilizes the following technologies/libraries: <br><ul>
-<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">Widget API</a></li>
+<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
 <li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
 <li><a href="http://leafletjs.com/">Leaflet JS</a></li>
@@ -25,9 +25,8 @@ This plugin utilizes the following technologies/libraries: <br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
 <li>Marker could be dragged and its dragged position must be saved.</li>
 <li>State of the panned map's view must be saved.</li>
-<li>Options to specify map width and height.
 <li>Responsive behavior (for mobile pages).
-<li>Ability to Add Map Caption/Annotation
+<li>Ability to add map caption/annotation
 <li>Display the map preview in the Dialog window.</li>
 <li>Handle multiple markers.</li>
 <li>Add and delete markers.</li>
