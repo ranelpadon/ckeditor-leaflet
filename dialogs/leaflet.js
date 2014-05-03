@@ -258,7 +258,11 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   minimap = 'off';
                 }
 
+                // Get a unique timestamp:
+                var milliseconds = new Date().getTime();
+
                 // Set/Update the widget's data attributes.
+                widget.element.data('id', 'leaflet_div-' + milliseconds);
                 widget.element.data('lat', latitude);
                 widget.element.data('lon', longitude);
                 widget.element.data('width', width);
@@ -278,8 +282,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   scrolling: 'no',
                   // 'id' is very useful when accessing the zoom level
                   // snapshot of the map
-                  id:"widget_iframe_map",
-                  class: "widget_iframe",
+                  id:"leaflet_iframe-" + milliseconds,
+                  class: "leaflet_iframe",
                   width: width + "px",
                   height: height + "px",
                   frameborder: 0,
