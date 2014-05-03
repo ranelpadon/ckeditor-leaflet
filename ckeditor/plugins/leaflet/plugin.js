@@ -1,6 +1,6 @@
 /**
  * @file plugin.js
- * Insert Inline map widget for CKEditor.
+ * Inline Leaflet map widget for CKEditor.
  * .
  */
 (function() {
@@ -64,18 +64,18 @@
 
         // Declare the elements to be upcasted back.
         // Otherwise, the widget's code will be ignored.
-        // Basically, we will allow div's 'widget_div' class
-        // and iframe's 'widget_iframe' class, and then include
+        // Basically, we will allow div's 'leaflet_div' class
+        // and iframe's 'leaflet_iframe' class, and then include
         // all their attributes.
         // Read more about the Advanced Content Filter here:
         // * http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter
         // * http://docs.ckeditor.com/#!/guide/plugin_sdk_integration_with_acf
-        allowedContent: 'div(!widget_div)[*];' + 'iframe(!widget_iframe)[*];',
+        allowedContent: 'div(!leaflet_div)[*];' + 'iframe(!leaflet_iframe)[*];',
 
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
-          '<div id="widget_div_map" class="widget_div" data-lat="" data-lon="" data-zoom="" data-tile="" data-minimap=""></div>',
+          '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" data-zoom="" data-tile="" data-minimap=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a
@@ -84,28 +84,38 @@
           // Note that 'element' here refers to the DIV widget.
           // Get the previously saved zoom value data attribute.
           // It will be compared to the current value in the map view.
-          zoomSaved = element.attributes["data-zoom"];
+          var zoomSaved = element.attributes["data-zoom"];
+
+          // Get the id of the div element.
+          var divId = element.attributes["id"];
+
+          // Get the numeric part of divId: leaflet_div-1399121271748.
+          // We'll use that number for quick fetching of target iframe.
+          var iframeId = "leaflet_iframe-" + divId.substring(12);
 
           // Get the zoom level's snapshot because the current user
           // might have changed it via mouse events or via the zoom bar.
-          zoomIframe = editor.document.$.getElementById("widget_iframe_map").contentDocument.getElementById("map_container").getAttribute("data-zoom");
+          // Basically, get the zoom level of a map embedded
+          // in this specific iframe and widget.
+          zoomIframe = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
+          // In case there are changes in zoom level.
           if (zoomIframe != zoomSaved) {
             // Update the saved zoom value in data attribute.
             element.attributes["data-zoom"] = zoomIframe;
 
             // Fetch the data attributes needed for
             // updating the full path of the map.
-            // We included the possibility of updates in LAT and LON values
-            // also to handle the draggable markers.
-            latitude = element.attributes["data-lat"];
-            longitude = element.attributes["data-lon"];
-            zoom = element.attributes["data-zoom"];
-            tile = element.attributes["data-tile"];
-            minimap = element.attributes["data-minimap"];
+            var latitude = element.attributes["data-lat"];
+            var longitude = element.attributes["data-lon"];
+            var width = element.attributes["data-width"];
+            var height = element.attributes["data-height"];
+            var zoom = element.attributes["data-zoom"];
+            var tile = element.attributes["data-tile"];
+            var minimap = element.attributes["data-minimap"];
 
             // Build the updated full path to the map renderer.
-            mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+            mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
             // Update also the iframe's 'src' attributes.
             // Updating 'data-cke-saved-src' is also required for
@@ -125,8 +135,8 @@
           // If we encounter a div with a class of 'leaflet',
           // it means that it's a widget and we need to convert it properly
           // to its original structure.
-          // Basically, it says to CKEditor which div is a widget.
-          if (element.name == 'div' && element.hasClass('widget_div')) {
+          // Basically, it says to CKEditor which div is a valid widget.
+          if (element.name == 'div' && element.hasClass('leaflet_div')) {
             return element;
           }
         },
@@ -143,7 +153,7 @@
 
       // Append the widget's styles when in the CKEditor edit page,
       // added for better user experience.
-      // Assign or append the widget's styles depeding on the existing setup.
+      // Assign or append the widget's styles depending on the existing setup.
       if (typeof editor.config.contentsCss == 'object') {
           editor.config.contentsCss.push(CKEDITOR.getUrl(this.path + 'css/contents.css'));
       }

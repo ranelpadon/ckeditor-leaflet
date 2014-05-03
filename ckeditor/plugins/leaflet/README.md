@@ -2,7 +2,7 @@ ckeditor-leaflet
 ================
 Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/index.html
 
-INSTALLATION:<br>
+<strong>INSTALLATION</strong>:<br>
 1) Unzip the folder and rename it to 'leaflet', then paste the renamed folder to 'ckeditor/plugins' folder; after that, you should now have a 'ckeditor/plugins/leaflet/plugin.js' folder structure<br>
 2) Edit the 'ckeditor/config.js' file, and add the following:<br>
     if no existing line yet:<br>
@@ -13,7 +13,7 @@ INSTALLATION:<br>
 This Leaflet Map plugin leverages the power of Widget API. Hence, the 'widget' plugin is also a hard dependency. Download the Widget plugin here: http://ckeditor.com/addon/widget, then follow again the installation procedure above.<br>
 
 This plugin utilizes the following technologies/libraries: <br><ul>
-<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">Widget API</a></li>
+<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
 <li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
 <li><a href="http://leafletjs.com/">Leaflet JS</a></li>
@@ -21,13 +21,12 @@ This plugin utilizes the following technologies/libraries: <br><ul>
 <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
 </ul>
 
-ROAD MAP (Planned stuff to do):<br><ul>
+<strong>ROAD MAP</strong> (Planned stuff to do):<br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
 <li>Marker could be dragged and its dragged position must be saved.</li>
 <li>State of the panned map's view must be saved.</li>
-<li>Options to specify map width and height.
 <li>Responsive behavior (for mobile pages).
-<li>Ability to Add Map Caption/Annotation
+<li>Ability to add map caption/annotation
 <li>Display the map preview in the Dialog window.</li>
 <li>Handle multiple markers.</li>
 <li>Add and delete markers.</li>
@@ -36,7 +35,7 @@ ROAD MAP (Planned stuff to do):<br><ul>
 <li>R&D other Leaflet plugins that might be useful.</li>
 </ul>
 
-LICENSE and CREDITS:<br>
+<strong>LICENSE and CREDITS</strong>:<br>
 
 License: <a href="https://www.gnu.org/licenses/lgpl.html">LGPL v3</a> applies.<br>
 Copyright 2014 by Engr. Ranel O. Padon<br>

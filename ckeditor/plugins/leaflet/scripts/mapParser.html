@@ -47,6 +47,10 @@
     <div id='map_container' style="width:95%px; height:590px;" data-zoom=""></div>
 
     <script type="text/javascript">
+      // Get the DOM node to which we will append the map.
+      // In our setup the map container is a DIV element.
+      var mapDiv = document.getElementById("map_container");
+
       // Parse the query parameters in the URL to obtain the
       // LAT, LON, and ZOOM values.
       queryString = getParams();
@@ -55,7 +59,14 @@
       // Otherwise, it will not work.
       var latitude = Number(queryString["lat"]);
       var longitude = Number(queryString["lon"]);
+
+      // Retrieve and adjust the map's height by 10px for better layout.
+      var mapHeight = Number(queryString["height"]) - 10;
+      mapDiv.style.height = String(mapHeight) + "px";
+
+      // Retrieve the zoom level.
       var zoom = Number(queryString["zoom"]);
+
       var tile = queryString["tile"];
       var minimap = queryString["minimap"];
 
@@ -67,12 +78,10 @@
       var mapTileProvider = tile;
 
       // Set the base map.
-      //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map1);
       var mapTile = L.tileLayer.provider(mapTileProvider, { attribution: "Map Tile: " + mapTileProvider });
       mapTile.addTo(map);
 
-      // Add a marker in the given location,
-      // attach some popup content to it and open the popup
+      // Add a marker in the given location.
       var p1 = L.marker([latitude, longitude]);
       p1.addTo(map);
 
@@ -84,8 +93,6 @@
         var mapTile2 = L.tileLayer.provider(mapTileProvider);
         var miniMap = new L.Control.MiniMap(mapTile2).addTo(map);
       }
-
-      var mapDiv = document.getElementById("map_container");
 
       // Initialize the zoom data attribute.
       mapDiv.setAttribute("data-zoom", map.getZoom());
