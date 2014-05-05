@@ -97,7 +97,7 @@
           // might have changed it via mouse events or via the zoom bar.
           // Basically, get the zoom level of a map embedded
           // in this specific iframe and widget.
-          zoomIframe = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container").getAttribute("data-zoom");
+          var zoomIframe = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container").getAttribute("data-zoom");
 
           // In case there are changes in zoom level.
           if (zoomIframe != zoomSaved) {
@@ -115,7 +115,7 @@
             var minimap = element.attributes["data-minimap"];
 
             // Build the updated full path to the map renderer.
-            mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
 
             // Update also the iframe's 'src' attributes.
             // Updating 'data-cke-saved-src' is also required for
