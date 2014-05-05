@@ -273,7 +273,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 var milliseconds = new Date().getTime();
 
                 // Set/Update the widget's data attributes.
-                widget.element.data('id', 'leaflet_div-' + milliseconds);
+                widget.element.setAttribute('id', 'leaflet_div-' + milliseconds);
+
                 widget.element.data('lat', latitude);
                 widget.element.data('lon', longitude);
                 widget.element.data('width', width);
