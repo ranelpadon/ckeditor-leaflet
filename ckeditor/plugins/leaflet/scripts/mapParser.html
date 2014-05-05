@@ -22,7 +22,13 @@
         // Remove the '?' character after the base url.
         // x.substring(i) will return the substring of x starting at index i
         // up to the end of the string.
-        var query_string = window.location.search.substring(1);
+        // Drupal CMS might have a path like this (two '?' characters):
+        // mapParser.html?t=E3OD?lat=14.6760413&lon=121.0437003&...
+        // We need to handle this case also.
+        var lastIndex = window.location.search.lastIndexOf("?")
+
+        // Get the substring not including any '?' character.
+        var query_string = window.location.search.substring(lastIndex + 1);
 
         // Explode the string using the '&' character.
         var query_string_parts = query_string.split('&');
