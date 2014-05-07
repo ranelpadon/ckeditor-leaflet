@@ -2,16 +2,6 @@ ckeditor-leaflet
 ================
 Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/index.html
 
-<strong>INSTALLATION</strong>:<br>
-1) Unzip the folder and rename it to 'leaflet', then paste the renamed folder to 'ckeditor/plugins' folder; after that, you should now have a 'ckeditor/plugins/leaflet/plugin.js' folder structure<br>
-2) Edit the 'ckeditor/config.js' file, and add the following:<br>
-    if no existing line yet:<br>
-      <code>config.extraPlugins = 'leaflet';</code><br>
-    otherwise, append it to the existing list, no extra spaces are allowed:<br>
-      <code>config.extraPlugins = 'existingPlugin,leaflet';</code><br>
-
-This Leaflet Map plugin leverages the power of Widget API. Hence, the 'widget' plugin is also a hard dependency. Download the Widget plugin here: http://ckeditor.com/addon/widget, then follow again the installation procedure above.<br>
-
 This plugin utilizes the following technologies/libraries: <br><ul>
 <li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
@@ -20,6 +10,12 @@ This plugin utilizes the following technologies/libraries: <br><ul>
 <li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
 <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
 </ul>
+
+<strong>INSTALLATION</strong>:<br>
+Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt">Installation Guide</a>
+
+<strong>HOW TO USE</strong>:<br>
+Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Creating%20and%20Editing%20Leaflet%20Maps.txt">How to Create and Edit Leaflet Maps</a>
 
 <strong>ROAD MAP</strong> (Planned stuff to do):<br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
