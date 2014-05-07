@@ -1,7 +1,5 @@
-/**
- * @file plugin.js
- * Inline Leaflet map widget for CKEditor.
- * .
+ /**
+ * @fileOverview Leaflet Map Widget.
  */
 (function() {
   /* Data Flow for CKEditor Widget components:
@@ -146,7 +144,7 @@
       // which is also bound to the Dialog command.
       // Apparently, this is required just like their plugin counterpart.
       editor.ui.addButton('leaflet', {
-        label : 'Insert a Leaflet map.',
+        label : 'Leaflet Map',
         command : 'leaflet',
         icon : this.path + 'icons/leaflet.png'
       });
