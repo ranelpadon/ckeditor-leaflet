@@ -68,25 +68,23 @@ Nevertheless, after experimenting with the various ways to enable the additional
     A. Activate the Plugins
         In EDITOR APPEARANCE >>> Plugins section:
         Enable the corresponding checkboxes for the Leaflet, Line Utilities, and Widget plugins.
-         These are the texts displayed adjacent to their checkboxes:
-          "Plugin file: leaflet"
-          "Plugin file: lineutils"
-          "Plugin file: widget"
-        Tip: Search for the text "Plugin to insert a Leaflet Map."
+        These are the texts displayed adjacent to their checkboxes:
+            "Plugin file: leaflet"
+            "Plugin file: lineutils"
+            "Plugin file: widget"
 
     B. Add them to the Toolbar
         We should make the activated plugins visible in the toolbar,
         skipping this step will make the Leaflet plugin inaccessible in the toolbar.
 
         In EDITOR APPEARANCE >>> Toolbar section:
-        Drag the Leaflet icon from the 'All Buttons' section to the 'Used Buttons' section.
+        Drag the Leaflet Maps icon (black-colored) from the 'All Buttons' section to the 'Used Buttons' section.
 
-        We need to configure the Leaflet icon only since the Line Utilities and Widget plugins
+        We need to configure the Leaflet Maps icon only since the Line Utilities and Widget plugins
         have no toolbar icons and they will just load in the background.
 
 3.) Then, click the Save button. Clear the Drupal's overall cache AND clear the browser's cache
     (since CKEditor's JS and CSS components are cached also in the browser.).
-
 
 As indicated above, using the sites/all/modules/[contrib]/ckeditor/plugins will work
 with no additional custom hooks programming since by default CKEditor utilize that folder
@@ -95,7 +93,7 @@ in the CKEditor Global Profile Settings: admin/config/content/ckeditor/editg.
 If you go that global profile page, this will be indicated (unless you override the default configuration):
     Path to the CKEditor plugins directory
         "%m/plugins"
-            (%m – the base URL path where the CKEditor module is stored)
+            (%m refers to the base URL path where the CKEditor module is stored)
 
 
 =========================================================================
