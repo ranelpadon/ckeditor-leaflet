@@ -2,17 +2,20 @@ ckeditor-leaflet
 ================
 <strong>OVERVIEW</strong>:<br>
 This CKEditor <a href="http://ckeditor.com/addon/leaflet">Leaflet Maps</a> plugin has three workhorse files:
-<br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/plugin.js">Plugin Core</a>: Defines the plugin and attaches the plugin to the CKEditor toolbar.
-<br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/dialogs/leaflet.js">Dialog Script</a>: Displays the map options when creating and editing existing maps.
-<br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/scripts/mapParser.html">Map Renderer</a>: Parses the map options via URL and renders the map accordingly.
+<ul>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/plugin.js">Plugin Core</a>: Defines the plugin and attaches the plugin to the CKEditor toolbar.</li>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/dialogs/leaflet.js">Dialog Script</a>: Displays the map options when creating and editing existing maps.</li>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/scripts/mapParser.html">Map Renderer</a>: Parses the map options via URL and renders the map accordingly.</li>
+</ul>
 
-This plugin utilizes the following technologies/libraries: <br><ul>
-<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
-<li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
-<li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
-<li><a href="http://leafletjs.com/">Leaflet JS</a></li>
-<li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
-<li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
+This plugin utilizes the following technologies/libraries: <br>
+<ul>
+  <li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
+  <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
+  <li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
+  <li><a href="http://leafletjs.com/">Leaflet JS</a></li>
+  <li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
+  <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
 </ul>
 
 <strong>LIVE DEMO PAGE</strong>:
