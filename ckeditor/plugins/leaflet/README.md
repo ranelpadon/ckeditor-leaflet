@@ -1,21 +1,31 @@
 ckeditor-leaflet
 ================
-Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/index.html
-
-This plugin utilizes the following technologies/libraries: <br><ul>
-<li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
-<li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
-<li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
-<li><a href="http://leafletjs.com/">Leaflet JS</a></li>
-<li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
-<li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
+<strong>OVERVIEW</strong>:<br>
+This CKEditor <a href="http://ckeditor.com/addon/leaflet">Leaflet Maps</a> plugin has three workhorse files:
+<ul>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/plugin.js">Plugin Core</a>: Defines the plugin and attaches the plugin to the CKEditor toolbar.</li>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/dialogs/leaflet.js">Dialog Script</a>: Displays the map options when creating and editing existing maps.</li>
+  <li><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/scripts/mapParser.html">Map Renderer</a>: Parses the map options via URL and renders the map accordingly.</li>
 </ul>
 
-<strong>INSTALLATION</strong>:<br>
-Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt">Installation Guide</a>
+This plugin utilizes the following technologies/libraries: <br>
+<ul>
+  <li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
+  <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
+  <li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
+  <li><a href="http://leafletjs.com/">Leaflet JS</a></li>
+  <li><a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet - Tile Providers</a></li>
+  <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
+</ul>
 
-<strong>HOW TO USE</strong>:<br>
-Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Creating%20and%20Editing%20Leaflet%20Maps.txt">How to Create and Edit Leaflet Maps</a>
+<strong>LIVE DEMO PAGE</strong>:
+<br>Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/index.html
+
+<strong>INSTALLATION</strong>:
+<br>Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt">Installation Guide</a>
+
+<strong>HOW TO USE</strong>:
+<br>Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Creating%20and%20Editing%20Leaflet%20Maps.txt">How to Create and Edit Leaflet Maps</a>
 
 <strong>ROAD MAP</strong> (Planned stuff to do):<br><ul>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
