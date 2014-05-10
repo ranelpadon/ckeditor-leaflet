@@ -6,7 +6,7 @@ This CKEditor plugin has three workhorse files:
 <br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/dialogs/leaflet.js">Dialog Script</a>: Displays the map options when creating and editing existing maps.
 <br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/scripts/mapParser.html">Map Renderer</a>: Parses the map options via URL and renders the map accordingly.
 
-<br>This plugin utilizes the following technologies/libraries: <br><ul>
+This plugin utilizes the following technologies/libraries: <br><ul>
 <li><a href="http://docs.ckeditor.com/#!/api/CKEDITOR.plugins.widget">CKEditor's Widget API</a></li>
 <li><a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google's Places Library/Type-Ahead Search</a></li>
 <li><a href="https://developers.google.com/maps/documentation/geocoding/">Google's Geocoding API</a></li>
