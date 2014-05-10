@@ -62,18 +62,21 @@
 
         // Declare the elements to be upcasted back.
         // Otherwise, the widget's code will be ignored.
-        // Basically, we will allow div's 'leaflet_div' class
-        // and iframe's 'leaflet_iframe' class, and then include
+        // Basically, we will allow all divs with 'leaflet_div' class,
+        // including their alignment classes, and all iframes with
+        // 'leaflet_iframe' class, and then include
         // all their attributes.
         // Read more about the Advanced Content Filter here:
         // * http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter
         // * http://docs.ckeditor.com/#!/guide/plugin_sdk_integration_with_acf
-        allowedContent: 'div(!leaflet_div)[*];' + 'iframe(!leaflet_iframe)[*];',
+        allowedContent: 'div(!leaflet_div,align-left,align-right,align-center)[*];'
+                            + 'iframe(!leaflet_iframe)[*];',
 
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
-          '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" data-zoom="" data-tile="" data-minimap=""></div>',
+          '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" ' +
+          'data-zoom="" data-tile="" data-minimap="" data-alignment=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a

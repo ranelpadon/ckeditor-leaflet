@@ -173,7 +173,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
         {
           // Create a new horizontal group.
           type: 'hbox',
-          // Set the relative widths of Latitude, Longitude and Zoom fields.
+          // Set the relative widths the tile and overview map fields.
           widths: [ '50%', '50%' ],
           children: [
             {
@@ -260,6 +260,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 var height = jQuery(".map_height input").val() || "400";
                 var zoom = jQuery('select.zoom').val();
                 var tile = jQuery('select.tile').val();
+                var alignment = jQuery('select.alignment').val();
 
                 // Returns 'on' or 'undefined'.
                 var minimap = jQuery('.minimap input:checked').val();
@@ -282,6 +283,16 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.data('zoom', zoom);
                 widget.element.data('tile', tile);
                 widget.element.data('minimap', minimap);
+                widget.element.data('alignment', alignment);
+
+                // Remove the previously set alignment class.
+                // Only one alignment class is set per map.
+                widget.element.removeClass('align-left');
+                widget.element.removeClass('align-right');
+                widget.element.removeClass('align-center');
+
+                // Set the alignment for this map.
+                widget.element.addClass('align-' + alignment);
 
                 // Build the full path to the map renderer.
                 mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
@@ -328,6 +339,31 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             }
           ]
         },
+
+        {
+          // Create a select list for Map Alignment.
+          // 'className' attribute is used for targeting this element in jQuery.
+          id: 'map_alignment',
+          className: 'alignment',
+          type: 'select',
+          label: 'Alignment',
+          items: [['Left', 'left'], ['Right', 'right'], ['Center', 'center']],
+
+          // This will execute also every time you edit/double-click the widget.
+          setup: function(widget) {
+            // Set this map alignment's select list when
+            // the current map has been initialized and set previously.
+            if (widget.element.data('alignment') != "") {
+              // Set the alignment.
+              this.setValue(widget.element.data('alignment'));
+            }
+
+            // Set the Default alignment value.
+            else {
+              this.setValue("left");
+            }
+          },
+        }
       ]
     }]
   };
