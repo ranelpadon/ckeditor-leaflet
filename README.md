@@ -1,7 +1,7 @@
 ckeditor-leaflet
 ================
 <strong>OVERVIEW</strong>:<br>
-This CKEditor plugin has three workhorse files:
+This CKEditor <a href="http://ckeditor.com/addon/leaflet">Leaflet Maps</a> plugin has three workhorse files:
 <br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/plugin.js">Plugin Core</a>: Defines the plugin and attaches the plugin to the CKEditor toolbar.
 <br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/dialogs/leaflet.js">Dialog Script</a>: Displays the map options when creating and editing existing maps.
 <br><a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/scripts/mapParser.html">Map Renderer</a>: Parses the map options via URL and renders the map accordingly.
