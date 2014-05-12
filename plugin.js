@@ -133,7 +133,7 @@
         // from CKEditor's Source Mode to View Mode.
         // The reverse of downcast() method.
         upcast: function(element) {
-          // If we encounter a div with a class of 'leaflet',
+          // If we encounter a div with a class of 'leaflet_div',
           // it means that it's a widget and we need to convert it properly
           // to its original structure.
           // Basically, it says to CKEditor which div is a valid widget.
