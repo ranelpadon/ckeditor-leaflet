@@ -31,7 +31,7 @@ II. EDITING EXISTING MAP
 
     It is either of the 2 steps (choose one only).
 
-    1.)  If you hover the mouse on the map, you will see the map's handle bar (cross hair)
+    1.) If you hover the mouse on the map, you will see the map's handle bar (cross hair)
         in the UPPER LEFT corner of the map, you could then double-click that
         to view or edit the map properties.
 
