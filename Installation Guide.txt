@@ -28,6 +28,10 @@ II. STANDARD INSTALLATION (Usual Setup)
     otherwise, append it to the existing list, no extra spaces are allowed:
         config.extraPlugins = "existing_plugin,another_existing_plugin,lineutils,widget,leaflet";
 
+3.) Just to make sure, clear the web browser's cache after modifying your configuration.
+    Clearing the browser's cache is also very important
+    since the CKEditor's JS and CSS assets/components are cached also in the browser.
+
 
 III. DRUPAL INSTALLATION
 
@@ -84,8 +88,7 @@ Nevertheless, after experimenting with the various ways to enable the additional
         have no toolbar icons and they will just load in the background.
 
 3.) Then, click the Save button. Clear the Drupal's overall cache AND clear the browser's cache.
-    Clearing the browser's cache is also very important since the CKEditor's JS and CSS assets or components
-    are cached also in the browser.
+    Clearing the browser's cache is also very important since the CKEditor's JS and CSS assets/components are cached also in the browser.
 
 As indicated above, using the "sites/all/modules/ckeditor/plugins" or "sites/all/modules/contrib/ckeditor/plugins"
 will work with no additional custom hooks programming since by default CKEditor utilize that folder
@@ -98,20 +101,6 @@ If you go that Global Profile Settings page, this will be indicated
     In which "%m" refers to the base URL path where the CKEditor module is stored,
     and defaults to "sites/all/modules/ckeditor" or "sites/all/modules/contrib/ckeditor".
 
-In the event that the Leaflet Maps will not show after saving the page, make sure you've configured the Text Formats and
-Input Filters correctly. Text formats (admin/config/content/formats) are utilized in Drupal for security reason
-and better user experience. By default, the Filtered HTML text format is used. The configuration for
-the Filtered HTML text format could be accessed here: admin/config/content/formats/filtered_html.
-
-Since Leaflet Maps uses an embedded "iframe" you must make sure that iframes are allowed to be rendered in the page.
-By default, it's not allowed. So, in the "Filter settings" section of the Filtered HTML text format configuration page
-(admin/config/content/formats/filtered_html), click the "Limit allowed HTML tags" vertical tab,
-and check if the "<iframe>"" tag is included in the "Allowed HTML tags" input text field.
-
-If it's not included yet, you could just add the "<iframe>"" tag in the input field and click the page's Save button.
-Or if you don't want to adjust your "Limit allowed HTML tags" setting, you could implement the Drupal's hook_filter_info(),
-which requires more custom work, see https://api.drupal.org/api/drupal/modules%21filter%21filter.api.php/function/hook_filter_info/7.
-
 
 =========================================================================
 
@@ -122,6 +111,3 @@ TO DO (CKEditor-Drupal Documentation):
 
   The advantage of this setup is the separation of control between the CKEditor module and CKEditor library
   (which facilitates easier setup for version control/updates/upgrades).
-
-
-
