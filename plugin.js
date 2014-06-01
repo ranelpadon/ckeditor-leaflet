@@ -149,7 +149,8 @@
       editor.ui.addButton('leaflet', {
         label : 'Leaflet Map',
         command : 'leaflet',
-        icon : this.path + 'icons/leaflet.png'
+        icon : this.path + 'icons/leaflet.png',
+        toolbar: "insert,1"
       });
 
       // Append the widget's styles when in the CKEditor edit page,
