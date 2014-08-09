@@ -84,6 +84,19 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             },
           ]
         },
+
+        {
+          id: 'popup_text',
+          className: 'popup-text',
+          type: 'text',
+          label: 'Pop-up Text',
+          setup: function(widget) {
+            // Set the Lat values if widget has previous value.
+            if (widget.element.data('popup-text') != "") {
+              this.setValue(widget.element.data('popup-text'));
+            }
+          },
+        },
       ]
       },
 
@@ -259,6 +272,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 var width = jQuery(".map_width input").val() || "400";
                 var height = jQuery(".map_height input").val() || "400";
                 var zoom = jQuery('select.zoom').val();
+                var popUpText = jQuery(".popup-text input").val();
                 var tile = jQuery('select.tile').val();
                 var alignment = jQuery('select.alignment').val();
 
@@ -281,6 +295,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.data('width', width);
                 widget.element.data('height', height);
                 widget.element.data('zoom', zoom);
+                widget.element.data('popup-text', popUpText);
                 widget.element.data('tile', tile);
                 widget.element.data('minimap', minimap);
                 widget.element.data('alignment', alignment);
@@ -295,7 +310,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.addClass('align-' + alignment);
 
                 // Build the full path to the map renderer.
-                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap;
 
                 // Create a new CKEditor DOM's iFrame.
                 var iframe = new CKEDITOR.dom.element('iframe');

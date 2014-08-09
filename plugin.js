@@ -2,26 +2,27 @@
  * @fileOverview Leaflet Map Widget.
  */
 (function() {
-  /* Data Flow for CKEditor Widget components:
-      enter CKEditor init()
-      enter upcast()
+  /* Flow of Control for CKEditor and Widget components:
+      Loading the page:
+      CKEditor init()
+      Widget upcast()
 
       Creating new widgets:
-      enter Widget init()
-      enter Widget data()
-      enter Dialog select element's items()
-      enter Dialog onShow()
-      enter Dialog setup()
-      enter Dialog commit()
+      Widget init()
+      Widget data()
+      Dialog select element's items()
+      Dialog onShow()
+      Dialog setup()
+      Dialog commit()
 
       When editing existing widgets:
-      enter Dialog onShow()
-      enter Dialog setup()
-      enter Dialog commit()
-      enter Widget data()
+      Dialog onShow()
+      Dialog setup()
+      Dialog commit()
+      Widget data()
 
       When saving page or clicking the CKEditor's Source button:
-      enter downcast()
+      Widget downcast()
    */
 
   // Dummy global method for quick workaround of asynchronous document.write()
@@ -50,7 +51,7 @@
       // map parameters. It's still not bound to any widget at this moment.
       CKEDITOR.dialog.add('leaflet', this.path + 'dialogs/leaflet.js');
 
-       // For reusability, declare a global variable pointing to the map script path
+      // For reusability, declare a global variable pointing to the map script path
       // that will build and render the map.
       // In JavaScript, relative path must include the leading slash.
       mapParserPath = CKEDITOR.getUrl(this.path + 'scripts/mapParser.html');
@@ -76,7 +77,7 @@
         // important elements/attributes. This is a required property of widget.
         template:
           '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" ' +
-          'data-zoom="" data-tile="" data-minimap="" data-alignment=""></div>',
+          'data-zoom="" data-popup-text="" data-tile="" data-minimap="" data-alignment=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a
@@ -112,11 +113,12 @@
             var width = element.attributes["data-width"];
             var height = element.attributes["data-height"];
             var zoom = element.attributes["data-zoom"];
+            var popUpText = element.attributes["data-popup-text"];
             var tile = element.attributes["data-tile"];
             var minimap = element.attributes["data-minimap"];
 
             // Build the updated full path to the map renderer.
-            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&tile=" + tile + "&minimap=" + minimap;
+            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap;
 
             // Update also the iframe's 'src' attributes.
             // Updating 'data-cke-saved-src' is also required for
