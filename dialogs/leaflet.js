@@ -89,11 +89,16 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           id: 'popup_text',
           className: 'popup-text',
           type: 'text',
-          label: 'Pop-up Text',
+          label: 'Pop-up Text (Optional)',
           setup: function(widget) {
             // Set the Lat values if widget has previous value.
             if (widget.element.data('popup-text') != "") {
               this.setValue(widget.element.data('popup-text'));
+            }
+
+            else {
+              // Set a diffused/default text for better user experience.
+              jQuery(".popup-text input").attr("placeholder", "Enter the marker's text.")
             }
           },
         },
