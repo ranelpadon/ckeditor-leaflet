@@ -1,5 +1,5 @@
 CKEDITOR.dialog.add('leaflet', function(editor) {
-  // Dialog's function callback for the Leaflet Widget.
+  // Dialog's function callback for the Leaflet Map Widget.
   return {
     title: 'Create/Edit Leaflet Map',
     minWidth: 320,
@@ -15,6 +15,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           className: 'geocode',
           type: 'text',
           label: 'Auto-Search of Coordinates.',
+          style: 'margin-top: -7px;',
+
           setup: function(widget) {
             this.setValue("");
           },
@@ -62,6 +64,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               className: 'latitude',
               type: 'text',
               label: 'Latitude',
+
               setup: function(widget) {
                 // Set the Lat values if widget has previous value.
                 if (widget.element.data('lat') != "") {
@@ -75,6 +78,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               className: 'longitude',
               type: 'text',
               label: 'Longitude',
+
               setup: function(widget) {
                 // Set the Lat values if widget has previous value.
                 if (widget.element.data('lon') != "") {
@@ -90,6 +94,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           className: 'popup-text',
           type: 'text',
           label: 'Pop-up Text (Optional)',
+          style: 'margin-bottom: 8px;',
+
           setup: function(widget) {
             // Set the Lat values if widget has previous value.
             if (widget.element.data('popup-text') != "") {
@@ -113,6 +119,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
         {
           // Create a new horizontal group.
           type: 'hbox',
+          style: 'margin-top: -7px;',
           // Set the relative widths of Latitude, Longitude and Zoom fields.
           widths: [ '38%', '38%', '24%' ],
           children: [
@@ -121,6 +128,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               className: 'map_width',
               type: 'text',
               label: 'Map Width',
+
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
                 jQuery(".map_width input").attr("placeholder", "400")
@@ -137,6 +145,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               className: 'map_height',
               type: 'text',
               label: 'Map Height',
+
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
                 jQuery(".map_height input").attr("placeholder", "400")
@@ -368,6 +377,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           type: 'select',
           label: 'Alignment',
           items: [['Left', 'left'], ['Right', 'right'], ['Center', 'center']],
+          style: 'margin-bottom: 4px;',
 
           // This will execute also every time you edit/double-click the widget.
           setup: function(widget) {
