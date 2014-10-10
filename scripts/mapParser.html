@@ -50,11 +50,20 @@
       .leaflet-popup-content {
         text-align: center;
       }
+
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      html, body, #map_container {
+        height: 100%;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
-    <div id='map_container' style="width:95%px; height:590px;" data-zoom=""></div>
-
+    <div id='map_container' data-zoom="" ></div>
     <script type="text/javascript">
       // Get the DOM node to which we will append the map.
       // In our setup the map container is a DIV element.
@@ -69,9 +78,18 @@
       var latitude = Number(queryString["lat"]);
       var longitude = Number(queryString["lon"]);
 
-      // Retrieve and adjust the map's height by 10px for better layout.
-      var mapHeight = Number(queryString["height"]) - 10;
-      mapDiv.style.height = String(mapHeight) + "px";
+      var responsive = queryString["responsive"];
+
+      // If responsive map option is enabled, set the map height to 100%.
+      if (responsive == "on") {
+        mapDiv.style.height = "100%";
+      }
+
+      else {
+        // Retrieve and adjust the map's height by 10px for better layout.
+        var mapHeight = Number(queryString["height"]) - 10;
+        mapDiv.style.height = String(mapHeight) + "px";
+      }
 
       // Retrieve the zoom level.
       var zoom = Number(queryString["zoom"]);
@@ -89,7 +107,7 @@
       // Set the view to a given place and zoom value.
       var map = L.map('map_container').setView([latitude, longitude], zoom);
 
-      // Choose the Map Tile provider "Esri.WorldTopoMap"
+      // Choose the Map Tile provider e.g. "Esri.WorldTopoMap"
       var mapTileProvider = tile;
 
       // Set the base map.

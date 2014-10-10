@@ -200,7 +200,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
         {
           // Create a new horizontal group.
           type: 'hbox',
-          // Set the relative widths the tile and overview map fields.
+          // Set the relative widths for the tile and overview map fields.
           widths: [ '50%', '50%' ],
           children: [
             {
@@ -323,8 +323,28 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Set the alignment for this map.
                 widget.element.addClass('align-' + alignment);
 
+                // Returns 'on' or 'undefined'.
+                var responsive = jQuery('.responsive input:checked').val();
+
+                // Use 'off' if the Responsive checkbox is unchecked.
+                if (responsive == undefined) {
+                  responsive = 'off';
+
+                  // Remove the previously set responsive map class,
+                  // if there's any.
+                  widget.element.removeClass('responsive-map');
+                }
+
+                else {
+                  // Add a class for styling.
+                  widget.element.addClass('responsive-map');
+                }
+
+                // Set the 'responsive' data attribute.
+                widget.element.data('responsive', responsive);
+
                 // Build the full path to the map renderer.
-                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap;
+                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
 
                 // Create a new CKEditor DOM's iFrame.
                 var iframe = new CKEDITOR.dom.element('iframe');
@@ -341,6 +361,12 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   'src': mapParserPathFull,
                   'data-cke-saved-src': mapParserPathFull
                 });
+
+                // If map is responsieve.
+                if (responsive == "on") {
+                  // Add a class for styling.
+                  iframe.setAttribute("class", "leaflet_iframe responsive-map-iframe");
+                }
 
                 // Insert the iframe to the widget's DIV element.
                 widget.element.append(iframe);
@@ -370,29 +396,64 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
         },
 
         {
-          // Create a select list for Map Alignment.
-          // 'className' attribute is used for targeting this element in jQuery.
-          id: 'map_alignment',
-          className: 'alignment',
-          type: 'select',
-          label: 'Alignment',
-          items: [['Left', 'left'], ['Right', 'right'], ['Center', 'center']],
-          style: 'margin-bottom: 4px;',
+          // Create a new horizontal group.
+          type: 'hbox',
+          // Set the relative widths for alignment and responsive options.
+          widths: [ '20%', '80%' ],
+          children: [
+            {
+              // Create a select list for Map Alignment.
+              // 'className' attribute is used for targeting this element in jQuery.
+              id: 'map_alignment',
+              className: 'alignment',
+              type: 'select',
+              label: 'Alignment',
+              items: [['Left', 'left'], ['Right', 'right'], ['Center', 'center']],
+              style: 'margin-bottom: 4px;',
 
-          // This will execute also every time you edit/double-click the widget.
-          setup: function(widget) {
-            // Set this map alignment's select list when
-            // the current map has been initialized and set previously.
-            if (widget.element.data('alignment') != "") {
-              // Set the alignment.
-              this.setValue(widget.element.data('alignment'));
-            }
+              // This will execute also every time you edit/double-click the widget.
+              setup: function(widget) {
+                // Set this map alignment's select list when
+                // the current map has been initialized and set previously.
+                if (widget.element.data('alignment') != "") {
+                  // Set the alignment.
+                  this.setValue(widget.element.data('alignment'));
+                }
 
-            // Set the Default alignment value.
-            else {
-              this.setValue("left");
+                // Set the Default alignment value.
+                else {
+                  this.setValue("left");
+                }
+              },
+            },
+
+            {
+              type: 'checkbox',
+              id: 'map_responsive',
+              className: 'responsive',
+              label: 'Responsive Map (100% Width)',
+              style: 'margin-top: 18px;',
+
+              // This will execute also every time you edit/double-click the widget.
+              setup: function(widget) {
+                // Set the Responsive check button, when editing widget.
+                if (widget.element.data('responsive') != "") {
+                  if (widget.element.data('responsive') == "on") {
+                    this.setValue('true');
+                  }
+
+                  else {
+                    this.setValue('');
+                  }
+                }
+
+                // Set the default value for new ones.
+                else {
+                  this.setValue('');
+                }
+              },
             }
-          },
+          ]
         }
       ]
     }]

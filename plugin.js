@@ -70,14 +70,14 @@
         // Read more about the Advanced Content Filter here:
         // * http://docs.ckeditor.com/#!/guide/dev_advanced_content_filter
         // * http://docs.ckeditor.com/#!/guide/plugin_sdk_integration_with_acf
-        allowedContent: 'div(!leaflet_div,align-left,align-right,align-center)[*];'
-                            + 'iframe(!leaflet_iframe)[*];',
+        allowedContent: 'div(!leaflet_div,align-left,align-right,align-center,responsive-map)[*];'
+                            + 'iframe(!leaflet_iframe,responsive-map-iframe)[*];',
 
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
           '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" ' +
-          'data-zoom="" data-popup-text="" data-tile="" data-minimap="" data-alignment=""></div>',
+          'data-zoom="" data-popup-text="" data-tile="" data-minimap="" data-alignment="" data-responsive=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
         // This is usually used as the function to convert the widget to a
@@ -116,9 +116,10 @@
             var popUpText = element.attributes["data-popup-text"];
             var tile = element.attributes["data-tile"];
             var minimap = element.attributes["data-minimap"];
+            var responsive = element.attributes["data-responsive"];
 
             // Build the updated full path to the map renderer.
-            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap;
+            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
 
             // Update also the iframe's 'src' attributes.
             // Updating 'data-cke-saved-src' is also required for

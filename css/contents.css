@@ -23,3 +23,19 @@
 .cke_widget_wrapper:hover>.cke_widget_element {
   outline: 3px solid yellow !important;
 }
+
+.responsive-map {
+  height: 0;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  position: relative;
+  width:100%;
+}
+
+.responsive-map-iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
