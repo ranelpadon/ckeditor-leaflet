@@ -86,8 +86,8 @@
       }
 
       else {
-        // Retrieve and adjust the map's height by 10px for better layout.
-        var mapHeight = Number(queryString["height"]) - 10;
+        // Retrieve the map's height.
+        var mapHeight = Number(queryString["height"]);
         mapDiv.style.height = String(mapHeight) + "px";
       }
 
