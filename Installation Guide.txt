@@ -144,8 +144,8 @@ B. DRUPAL INSTALLATION OPTION 2
 
         function MYMODULE_ckeditor_plugin() {
           return array(
-            'leaflet' => array(
-              'name' => 'Leaflet Maps',
+            'leaflet_maps' => array(
+              'name' => 'leaflet',
               'desc' => t('Plugin for inserting Leaflet Maps.'),
               'path' => libraries_get_path('ckeditor') . '/plugins/leaflet/',
               'buttons' => array(

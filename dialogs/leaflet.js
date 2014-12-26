@@ -362,7 +362,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   'data-cke-saved-src': mapParserPathFull
                 });
 
-                // If map is responsieve.
+                // If map is responsive.
                 if (responsive == "on") {
                   // Add a class for styling.
                   iframe.setAttribute("class", "leaflet_iframe responsive-map-iframe");
