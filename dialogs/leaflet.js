@@ -237,7 +237,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                 if (geocode != "") {
                   // No need to call the encodeURIComponent().
-                  var geocodingRequest = "https://maps.googleapis.com/maps/api/geocode/json?address=" + geocode + "&sensor=false";
+                  var geocodingRequest = "//maps.googleapis.com/maps/api/geocode/json?address=" + geocode + "&sensor=false";
 
                   // Disable the asynchoronous behavior temporarily so that
                   // waiting for results will happen before proceeding

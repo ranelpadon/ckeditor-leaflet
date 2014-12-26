@@ -39,7 +39,7 @@
   // that is, they will be loaded in parallel to boost performance.
   // See also CKEDITOR.scriptLoader.queue.
   CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
-  CKEDITOR.scriptLoader.load('http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&callback=dummy');
+  CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&sensor=false&callback=dummy');
 
   // Add a new CKEditor plugin. Note that widgets are subclass of plugins.
   CKEDITOR.plugins.add('leaflet', {
