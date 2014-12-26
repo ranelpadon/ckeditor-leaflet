@@ -42,8 +42,7 @@ and then loading the corresponding CKEditor JS library (http://ckeditor.com/).
 Drupal's CKEditor module (tested on version ) is typically installed to have this internal path:
     sites/all/modules/ckeditor or sites/all/modules/contrib/ckeditor.
 
-Note that this guide is tested on CKEditor "7.x-1.13", latest version is "7.x-1.14".
-I'll test this guide also in the latest version later.
+Note that this guide is tested on Drupal's CKEditor 7.x-1.13, I'll test this guide also in the latest version.
 
 Moreover, the CKeditor JS Library is typically installed to have this internal path:
     "sites/all/modules/ckeditor/ckeditor/ckeditor.js" or
@@ -197,7 +196,28 @@ Note that if you configure the Leaflet Maps, Line Utilities, and Widget plugins
 using the handy CKEditor auto-builder (http://ckeditor.com/builder) and
 bundled it with the core "ckeditor.js" file, it will not work in Drupal,
 since as far as I know, the Drupal's CKEditor module
-(or specifically the hook_ckeditor_plugin()) has no support for it yet.
+(or specifically the hook_ckeditor_plugin()) has no support for auto-build versions.
 
 But, outside of Drupal, the Leaflet Maps will work even when
 pre-configured/auto-bundled using the CKEditor builder.
+
+
+IV. CAVEATS AND SURPRISES: STYLING AND MARKUP FILTERING ISSUES
+
+For some systems like Drupal, IFRAME tag is blacklisted mainly for security purposes
+when filtering contents. Currently, CKEditor Leaflet Maps uses IFRAME for rendering maps,
+hence you must allow IFRAME tag in order for it to work as intended. In Drupal,
+you should add the IFRAME tag as one of the whitelisted tags in the
+'Allowed HTML tags' section in 'Limit allowed HTML tags' filter/tab in
+"admin/config/content/formats/filtered_html" page.
+
+Furthermore, this widget utilizes CSS classes to have a more maintainable styling
+instead of bombarding the widget with inline styles resulting to a cluttered markup.
+In Drupal, when you save the page after editing it with CKEditor, inline styles will be
+discarded by Drupal by default, again for security purposes. Thus, for cases like this,
+you need to load the contents of the wdiget's CSS file 'leaflet/css/contents.css'
+to pages that will render the Leaflet Maps. This is very important if you want to make
+the position/alignment or responsive behavior work as intended. You could add the style file
+to your site's theme or global/core CSS file. In Drupal, you could easily add the styles
+by using the CSS Injector module (https://www.drupal.org/project/css_injector)
+or by using the usual drupal_add_css() construct in your custom module.
