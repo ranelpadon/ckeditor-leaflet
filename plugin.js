@@ -35,10 +35,15 @@
     // Do nothing.
   }
 
-  // Load the needed external libraries. This is asynchronous loading,
-  // that is, they will be loaded in parallel to boost performance.
-  // See also CKEDITOR.scriptLoader.queue.
-  CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
+  // Check if jQuery is already loaded to avoid redundancy and overriding
+  // existing 3rd-party jQuery plugins' bindings to jQuery prototype.
+  if (typeof jQuery == 'undefined') {
+    // This is asynchronous loading.
+    // See also CKEDITOR.scriptLoader.queue.
+    CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
+  }
+
+  // Load other needed external library.
   CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&sensor=false&callback=dummy');
 
   // Add a new CKEditor plugin. Note that widgets are subclass of plugins.
