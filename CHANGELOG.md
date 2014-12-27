@@ -1,5 +1,4 @@
 ###CHANGELOG
----
 
 ####Version 1.3.1 Released (December 27, 2014)
 Add a conditional check to load only the jQuery library if it's not already loaded to boost performance and avoid overriding jQuery bindings with other 3rd-party plugins.
