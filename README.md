@@ -48,8 +48,8 @@ This plugin utilizes the following technologies/libraries: <br>
 
 <strong>LICENSE and CREDITS</strong>:<br>
 
-License: <a href="https://www.gnu.org/licenses/lgpl.html">LGPL v3</a> applies.<br>
-Copyright 2014 by Engr. Ranel O. Padon<br>
+License: <a href="https://www.gnu.org/licenses/lgpl-2.1.txt">LGPLv2.1</a> or later should apply. Note that LGPLv2.1+ is also compatible with <a href="https://www.drupal.org/node/1475972#gplv2-compatible-licenses">GPLv2</a>.<br>
+Copyright 2015 by Engr. Ranel O. Padon<br>
 ranel.padon@gmail.com<br>
 
 Plugin's icon is a property of <a href="http://simpleicon.com/">simpleicon</a>.
