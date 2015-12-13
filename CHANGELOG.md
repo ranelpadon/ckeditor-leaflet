@@ -1,5 +1,8 @@
 ###CHANGELOG
 
+####Version 1.3.2 Released (December 13, 2015)
+Update the Leaflet Maps installation documentation with respect to version 7.x-1.16 of Drupal's CKEditor module. Adjust the plugin's license for compatibility with GPLv2+ open-source projects.
+
 ####Version 1.3.1 Released (December 27, 2014)
 Add a conditional check to load only the jQuery library if it's not already loaded to boost performance and avoid overriding jQuery bindings with other 3rd-party plugins.
 
