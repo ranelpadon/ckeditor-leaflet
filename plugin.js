@@ -88,11 +88,6 @@
         // This is usually used as the function to convert the widget to a
         // dummy, simpler, or equivalent textual representation.
         downcast: function(element) {
-          // Note that 'element' here refers to the DIV widget.
-          // Get the previously saved zoom value data attribute.
-          // It will be compared to the current value in the map view.
-          var zoomSaved = element.attributes["data-zoom"];
-
           // Get the id of the div element.
           var divId = element.attributes["id"];
 
@@ -100,38 +95,38 @@
           // We'll use that number for quick fetching of target iframe.
           var iframeId = "leaflet_iframe-" + divId.substring(12);
 
-          // Get the zoom level's snapshot because the current user
-          // might have changed it via mouse events or via the zoom bar.
-          // Basically, get the zoom level of a map embedded
-          // in this specific iframe and widget.
-          var zoomIframe = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container").getAttribute("data-zoom");
+          // The current user might have changed the map's zoom level
+          // via mouse events/zoom bar. The marker might have been
+          // dragged also which means its lat/lon had changed.
+          var mapContainer = editor.document.$.getElementById(iframeId).contentDocument.getElementById("map_container");
 
-          // In case there are changes in zoom level.
-          if (zoomIframe != zoomSaved) {
-            // Update the saved zoom value in data attribute.
-            element.attributes["data-zoom"] = zoomIframe;
+          // Get the current map states.
+          var currentZoom = mapContainer.getAttribute("data-zoom");
+          var currentLat = mapContainer.getAttribute("data-lat");
+          var currentLon = mapContainer.getAttribute("data-lon");
 
-            // Fetch the data attributes needed for
-            // updating the full path of the map.
-            var latitude = element.attributes["data-lat"];
-            var longitude = element.attributes["data-lon"];
-            var width = element.attributes["data-width"];
-            var height = element.attributes["data-height"];
-            var zoom = element.attributes["data-zoom"];
-            var popUpText = element.attributes["data-popup-text"];
-            var tile = element.attributes["data-tile"];
-            var minimap = element.attributes["data-minimap"];
-            var responsive = element.attributes["data-responsive"];
+          // Update the saved corresponding values in data attributes.
+          element.attributes["data-zoom"] = currentZoom;
+          element.attributes["data-lat"] = currentLat;
+          element.attributes["data-lon"] = currentLon;
 
-            // Build the updated full path to the map renderer.
-            var mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
+          // Fetch the other data attributes needed for
+          // updating the full path of the map.
+          var width = element.attributes["data-width"];
+          var height = element.attributes["data-height"];
+          var popUpText = element.attributes["data-popup-text"];
+          var tile = element.attributes["data-tile"];
+          var minimap = element.attributes["data-minimap"];
+          var responsive = element.attributes["data-responsive"];
 
-            // Update also the iframe's 'src' attributes.
-            // Updating 'data-cke-saved-src' is also required for
-            // internal use of CKEditor.
-            element.children[0].attributes["src"] = mapParserPathFull;
-            element.children[0].attributes["data-cke-saved-src"] = mapParserPathFull;
-          }
+          // Build the updated full path to the map renderer.
+          var mapParserPathFull = mapParserPath + "?lat=" + currentLat + "&lon=" + currentLon + "&width=" + width + "&height=" + height + "&zoom=" + currentZoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
+
+          // Update also the iframe's 'src' attributes.
+          // Updating 'data-cke-saved-src' is also required for
+          // internal use of CKEditor.
+          element.children[0].attributes["src"] = mapParserPathFull;
+          element.children[0].attributes["data-cke-saved-src"] = mapParserPathFull;
 
           // Return the DOM's textual representation.
           return element;
