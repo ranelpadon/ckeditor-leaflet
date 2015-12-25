@@ -1,4 +1,6 @@
 CKEDITOR.dialog.add('leaflet', function(editor) {
+  var mapContainer = '';
+
   // Dialog's function callback for the Leaflet Map Widget.
   return {
     title: 'Create/Edit Leaflet Map',
@@ -67,8 +69,18 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
               setup: function(widget) {
                 // Set the Lat values if widget has previous value.
-                if (widget.element.data('lat') != "") {
-                  this.setValue(widget.element.data('lat'));
+                if (widget.element.data('lat') !== '') {
+                  // Update the data-lat based on the map lat in iframe.
+                  // Make sure that mapContainer is set.
+                  // Also avoids setting it again since zoom/longitude
+                  // might already computed/set this object.
+                  if (mapContainer === '') {
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
+                  }
+
+                  var currentLat = mapContainer.getAttribute("data-lat");
+
+                  this.setValue(currentLat);
                 }
               },
             },
@@ -80,9 +92,19 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               label: 'Longitude',
 
               setup: function(widget) {
-                // Set the Lat values if widget has previous value.
-                if (widget.element.data('lon') != "") {
-                  this.setValue(widget.element.data('lon'));
+                // Set the Lon values if widget has previous value.
+                if (widget.element.data('lat') !== '') {
+                  // Update the data-lon based on the map lon in iframe.
+                  // Make sure that mapContainer is set.
+                  // Also avoids setting it again since zoom/latitude
+                  // might already computed/set this object.
+                  if (mapContainer === '') {
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
+                  }
+
+                  var currentLon = mapContainer.getAttribute("data-lon");
+
+                  this.setValue(currentLon);
                 }
               },
             },
@@ -172,20 +194,17 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Set this Zoom Level's select list when
                 // the current location has been initialized and set previously.
                 if (widget.element.data('zoom') != "") {
-                  // Get the previously saved zoom value data attribute.
-                  // It will be compared to the current value in the map view.
-                  var zoomSaved = widget.element.data('zoom');
-
-                  // Get the zoom level's snapshot because the current user
-                  // might have changed it via mouse events or via the zoom bar.
-                  var zoomIframe = widget.element.getChild(0).$.contentDocument.getElementById("map_container").getAttribute("data-zoom");
-
-                  if (zoomIframe != zoomSaved) {
-                    // Update the saved zoom value in data attribute.
-                    zoomSaved = zoomIframe;
+                  // Update the data-zoom based on the map zoom level in iframe.
+                  // Make sure that mapContainer is set.
+                  // Also avoids setting it again since latitude/longitude
+                  // might already computed/set this object.
+                  if (mapContainer === '') {
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
                   }
 
-                  this.setValue(zoomSaved);
+                  var currentZoom = mapContainer.getAttribute("data-zoom");
+
+                  this.setValue(currentZoom);
                 }
 
                 // Set the Default Zoom Level value.
@@ -370,6 +389,9 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                 // Insert the iframe to the widget's DIV element.
                 widget.element.append(iframe);
+
+                // Reset/clear the map iframe/DOM object reference.
+                mapContainer = '';
               },
             },
 
