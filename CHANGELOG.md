@@ -1,5 +1,21 @@
 ###CHANGELOG
 
+####Version 1.4 Released (???)
+
+ - Implement draggable marker so that the latitude and longitude of a  place could be
+   more precise and refined, especially when the Google's predicted location is not in
+   has saved the page or when the user opens the widget's dialog options and then
+   clicked the OK button (w/ or w/out changing any of the dialog options).
+
+ - Update Leaflet's JS/CSS files to the latest stable build, version [0.7.7](http://leafletjs.com/download.html),
+   which was released on October 26, 2015.
+
+ - Remove the unnecessary files (especially the files/assets in the **leaflet/scripts** folder)
+    so that the plugin's folder is as lean as possible.
+
+####Version 1.3.3 Released (December 25, 2015)
+Same as Version 1.3.2, but re-uploaded in CKEditor.com just to indicate compatibility with CKEditor 4.5.x on its plugin page. Not a significant release actually.
+
 ####Version 1.3.2 Released (December 13, 2015)
 Update the Leaflet Maps installation documentation with respect to version 7.x-1.16 of Drupal's CKEditor module. Adjust the plugin's license for compatibility with GPLv2+ open-source projects.
 
