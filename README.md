@@ -19,7 +19,7 @@ This plugin utilizes the following technologies/libraries: <br>
 </ul>
 
 <strong>LIVE DEMO PAGE</strong>:
-<br>Demo page could be found here: http://ranelpadon.github.io/ckeditor-leaflet/index.html
+<br>Demo page could be found [here](http://www.ranelpadon.com/sites/all/libraries/ckeditor/plugins/leaflet/demo/index.html). It is comprehensive and showcases the various map options, including the draggable marker, customizable pop-up text, and responsive behavior (see the bottom map example in the demo).
 
 <strong>INSTALLATION</strong>:
 <br>Kindly refer to <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt">Installation Guide</a>
@@ -68,10 +68,3 @@ Senior QA Analyst:<br>
 Jonathan A. Jacinto<br>
 
 =======================================================
-
-
-
-
-
-
-
