@@ -18,6 +18,22 @@ This plugin utilizes the following technologies/libraries: <br>
   <li><a href="https://github.com/Norkart/Leaflet-MiniMap">Leaflet - MiniMap</a></li>
 </ul>
 
+Main features/highlights: <br>
+<ul>
+  <li>Auto-searching of map coordinates using Google Search with Geocoding.</li>
+  <li>12 available map tiles, including OpenStreetMap and MapQuest.</li>
+  <li>Map could include a minimap/overview map for better map context.</li>
+  <li>Map could be responsive (100% width).</li>
+  <li>Map could be customized with the specified width and height dimensions.</li>
+  <li>Map could be aligned to the left or right, or be placed at the center of the page.</li>
+  <li>Map zoom level could be changed using the mouse wheel, zoom buttons, or zoom dialog options.</li>
+  <li>Map zoom level could be customized per map and saved.</li>
+  <li>Marker's popup text could be customized.</li>
+  <li>Marker could be dragged and its last position will be saved.</li>
+  <li>Map re-centers the view on-the-fly as the user drags the marker,  for better UX .</li>
+  <li>Supports both http and https protocols.</li>
+</ul>
+
 <strong>LIVE DEMO PAGE</strong>:
 <br>Demo page could be found [here](http://www.ranelpadon.com/sites/all/libraries/ckeditor/plugins/leaflet/demo/index.html). It is comprehensive and showcases the various map options, including the draggable marker, customizable pop-up text, and responsive behavior (see the bottom map example in the demo).
 
@@ -31,11 +47,11 @@ This plugin utilizes the following technologies/libraries: <br>
 <br>Kindly refer to the <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/CHANGELOG.md">Release Notes</a>
 
 <strong>ROAD MAP</strong> (Planned stuff to do):<br><ul>
+<li>Language localization/multilingual support.</li>
 <li>IFRAME-less implementation for faster rendering in pages with lots of maps.</li>
 <li>Render widget only on demand or as the page scrolls for optimal page performance.</li>
 <li>Integration with Inline/In-Place Editing.</li>
 <li>Option to show the cursor's map coordinates and scale bar.</li>
-<li>Marker could be dragged and its dragged position must be saved.</li>
 <li>State of the panned map's view must be saved.</li>
 <li>Ability to add map caption/annotation
 <li>Display the map preview in the Dialog window.</li>
