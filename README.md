@@ -47,7 +47,7 @@ Main features/highlights: <br>
 <br>Kindly refer to the <a href="https://github.com/ranelpadon/ckeditor-leaflet/blob/master/CHANGELOG.md">Release Notes</a>
 
 <strong>ROAD MAP</strong> (Planned stuff to do):<br><ul>
-<li>Language localization/multilingual support.</li>
+<li>Language localization/multilingual support (I'm currently working on it).</li>
 <li>IFRAME-less implementation for faster rendering in pages with lots of maps.</li>
 <li>Render widget only on demand or as the page scrolls for optimal page performance.</li>
 <li>Integration with Inline/In-Place Editing.</li>
