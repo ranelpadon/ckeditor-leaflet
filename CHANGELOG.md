@@ -1,6 +1,6 @@
 ###CHANGELOG
 
-####Version 1.4 Released (???)
+####Version 1.4 Released (December 30, 2015)
 
  - Implement draggable marker so that the latitude and longitude of a  place could be
    more precise and refined, especially when the Google's predicted location is not in
