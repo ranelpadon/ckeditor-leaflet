@@ -7,8 +7,11 @@
    has saved the page or when the user opens the widget's dialog options and then
    clicked the OK button (w/ or w/out changing any of the dialog options).
 
+ - Recenter the map (and with panning animation) for better UX
+   if the user drags the marker to a new position
+
  - Update Leaflet's JS/CSS files to the latest stable build, version [0.7.7](http://leafletjs.com/download.html),
-   which was released on October 26, 2015.
+ which was released on October 26, 2015.
 
  - Remove the unnecessary files (especially the files/assets in the **leaflet/scripts** folder)
     so that the plugin's folder is as lean as possible.
