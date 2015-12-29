@@ -136,6 +136,10 @@
         var lat = newLocation.lat;
         var lon = newLocation.lng;
 
+        // Pan the map to its new center which is the last position
+        // of the dragged marker.
+        map.panTo([lat, lon]);
+
         mapDiv.setAttribute("data-lat", String(lat));
         mapDiv.setAttribute("data-lon", String(lon));
       });
