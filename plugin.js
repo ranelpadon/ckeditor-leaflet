@@ -51,7 +51,13 @@
     // Declare dependencies.
     requires: 'widget',
 
+    // Declare the supported languages.
+    lang: 'en',
+
     init: function(editor) {
+      // Access the current translation file.
+      var pluginTranslation = editor.lang.leaflet;
+
       // Declare a new Dialog for interactive selection of
       // map parameters. It's still not bound to any widget at this moment.
       CKEDITOR.dialog.add('leaflet', this.path + 'dialogs/leaflet.js');
@@ -150,10 +156,10 @@
       // which is also bound to the Dialog command.
       // Apparently, this is required just like their plugin counterpart.
       editor.ui.addButton('leaflet', {
-        label : 'Leaflet Map',
+        label : pluginTranslation.buttonLabel,
         command : 'leaflet',
         icon : this.path + 'icons/leaflet.png',
-        toolbar: "insert,1"
+        toolbar: 'insert,1'
       });
 
       // Append the widget's styles when in the CKEditor edit page,

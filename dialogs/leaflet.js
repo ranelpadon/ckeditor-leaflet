@@ -1,31 +1,39 @@
 CKEDITOR.dialog.add('leaflet', function(editor) {
   var mapContainer = '';
 
+  // Access the current translation file.
+  var pluginTranslation = editor.lang.leaflet;
+
   // Dialog's function callback for the Leaflet Map Widget.
   return {
-    title: 'Create/Edit Leaflet Map',
+    title: pluginTranslation.dialogTitle,
     minWidth: 320,
     minHeight: 125,
 
     contents: [{
       // Create a Location tab.
       id: 'location_tab',
-      label: 'Location',
+      label: pluginTranslation.locationTabLabel,
       elements: [
         {
           id: 'map_geocode',
           className: 'geocode',
           type: 'text',
-          label: 'Auto-Search of Coordinates.',
+          label: pluginTranslation.googleSearchFieldLabel,
           style: 'margin-top: -7px;',
 
           setup: function(widget) {
-            this.setValue("");
+            this.setValue('');
           },
 
           onShow: function (widget) {
             // Get the DOM reference for the Search field.
-            var input = jQuery(".geocode input")[0];
+            var input = jQuery('.geocode input')[0];
+
+            // Set a diffused/default text for better user experience.
+            // This will override the Google's default placeholder text:
+            // 'Enter a location'.
+            jQuery('.geocode input').attr('placeholder', pluginTranslation.googleSearchFieldHint);
 
             // Bind the Search field to the Autocomplete widget.
             var autocomplete = new google.maps.places.Autocomplete(input);
@@ -52,7 +60,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           id: 'map_label',
           className: 'label',
           style: 'margin-bottom: -10px;',
-          html: '<p>Manual Input of Coordinates:</p>'
+          html: '<p>' + pluginTranslation.manualCoordinatesFieldLabel + '</p>'
         },
 
         {
@@ -65,7 +73,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_latitude',
               className: 'latitude',
               type: 'text',
-              label: 'Latitude',
+              label: pluginTranslation.manualLatitudeFieldLabel,
 
               setup: function(widget) {
                 // Set the Lat values if widget has previous value.
@@ -75,10 +83,10 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   // Also avoids setting it again since zoom/longitude
                   // might already computed/set this object.
                   if (mapContainer === '') {
-                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById('map_container');
                   }
 
-                  var currentLat = mapContainer.getAttribute("data-lat");
+                  var currentLat = mapContainer.getAttribute('data-lat');
 
                   this.setValue(currentLat);
                 }
@@ -89,7 +97,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_longitude',
               className: 'longitude',
               type: 'text',
-              label: 'Longitude',
+              label: pluginTranslation.manualLongitudeFieldLabel,
 
               setup: function(widget) {
                 // Set the Lon values if widget has previous value.
@@ -99,10 +107,10 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   // Also avoids setting it again since zoom/latitude
                   // might already computed/set this object.
                   if (mapContainer === '') {
-                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById('map_container');
                   }
 
-                  var currentLon = mapContainer.getAttribute("data-lon");
+                  var currentLon = mapContainer.getAttribute('data-lon');
 
                   this.setValue(currentLon);
                 }
@@ -115,18 +123,18 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           id: 'popup_text',
           className: 'popup-text',
           type: 'text',
-          label: 'Pop-up Text (Optional)',
+          label: pluginTranslation.popupTextFieldLabel,
           style: 'margin-bottom: 8px;',
 
           setup: function(widget) {
             // Set the Lat values if widget has previous value.
-            if (widget.element.data('popup-text') != "") {
+            if (widget.element.data('popup-text') != '') {
               this.setValue(widget.element.data('popup-text'));
             }
 
             else {
               // Set a diffused/default text for better user experience.
-              jQuery(".popup-text input").attr("placeholder", "Enter the marker's text.")
+              jQuery('.popup-text input').attr('placeholder', pluginTranslation.popupTextFieldHint)
             }
           },
         },
@@ -136,7 +144,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
       {
       // Create an Options tab.
       id: 'options_tab',
-      label: 'Options',
+      label: pluginTranslation.optionsTabLabel,
       elements: [
         {
           // Create a new horizontal group.
@@ -149,14 +157,14 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'width',
               className: 'map_width',
               type: 'text',
-              label: 'Map Width',
+              label: pluginTranslation.mapWidthFieldLabel,
 
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
-                jQuery(".map_width input").attr("placeholder", "400")
+                jQuery('.map_width input').attr('placeholder', '400')
 
                 // Set the map width value if widget has a previous value.
-                if (widget.element.data('width') != "") {
+                if (widget.element.data('width') != '') {
                   this.setValue(widget.element.data('width'));
                 }
               },
@@ -166,14 +174,14 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'height',
               className: 'map_height',
               type: 'text',
-              label: 'Map Height',
+              label: pluginTranslation.mapHeightFieldLabel,
 
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
-                jQuery(".map_height input").attr("placeholder", "400")
+                jQuery('.map_height input').attr('placeholder', '400');
 
                 // Set the map height value if widget has a previous value.
-                if (widget.element.data('height') != "") {
+                if (widget.element.data('height') != '') {
                   this.setValue(widget.element.data('height'));
                 }
               },
@@ -185,7 +193,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_zoom',
               className: 'zoom',
               type: 'select',
-              label: 'Zoom Level',
+              label: pluginTranslation.mapZoomLevelFieldLabel,
               width: '70px',
               items: [['1'], ['2'], ['3'], ['4'],['5'], ['6'], ['7'], ['8'], ['9'], ['10'], ['11'], ['12'], ['13'], ['14'], ['15'], ['16'], ['17'], ['18'], ['19'], ['20']],
 
@@ -193,23 +201,23 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               setup: function(widget) {
                 // Set this Zoom Level's select list when
                 // the current location has been initialized and set previously.
-                if (widget.element.data('zoom') != "") {
+                if (widget.element.data('zoom') != '') {
                   // Update the data-zoom based on the map zoom level in iframe.
                   // Make sure that mapContainer is set.
                   // Also avoids setting it again since latitude/longitude
                   // might already computed/set this object.
                   if (mapContainer === '') {
-                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById("map_container");
+                    mapContainer = widget.element.getChild(0).$.contentDocument.getElementById('map_container');
                   }
 
-                  var currentZoom = mapContainer.getAttribute("data-zoom");
+                  var currentZoom = mapContainer.getAttribute('data-zoom');
 
                   this.setValue(currentZoom);
                 }
 
                 // Set the Default Zoom Level value.
                 else {
-                  this.setValue("10");
+                  this.setValue('10');
                 }
               },
             }
@@ -228,13 +236,13 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               type: 'select',
               id: 'map_tile',
               className: 'tile',
-              label: 'Base Map Tile',
+              label: pluginTranslation.baseMapTileLabel,
               items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.DeLorme'], ['Esri.NatGeoWorldMap'], ['Esri.WorldPhysical'], ['Esri.WorldTopoMap'], ['Thunderforest.OpenCycleMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
                 // Set the Tile data attribute.
-                if (widget.element.data('tile') != "") {
+                if (widget.element.data('tile') != '') {
                   this.setValue(widget.element.data('tile'));
                 }
 
@@ -254,9 +262,9 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 var geocode = jQuery('.geocode input').val();
                 var latitude, longitude;
 
-                if (geocode != "") {
+                if (geocode != '') {
                   // No need to call the encodeURIComponent().
-                  var geocodingRequest = "//maps.googleapis.com/maps/api/geocode/json?address=" + geocode + "&sensor=false";
+                  var geocodingRequest = '//maps.googleapis.com/maps/api/geocode/json?address=' + geocode + '&sensor=false';
 
                   // Disable the asynchoronous behavior temporarily so that
                   // waiting for results will happen before proceeding
@@ -267,7 +275,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                   // Geocode the retrieved place name.
                   jQuery.getJSON(geocodingRequest, function(data) {
-                    if (data["status"] != "ZERO_RESULTS") {
+                    if (data['status'] != 'ZERO_RESULTS') {
                       // Get the Latitude and Longitude object in the
                       // returned JSON object.
                       latitude = data.results[0].geometry.location.lat;
@@ -277,7 +285,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                     // Handle queries with no results or have some
                     // malformed parameters.
                     else {
-                      alert("The Place could not be Geocoded properly. Kindly choose another one.")
+                      alert('The Place could not be Geocoded properly. Kindly choose another one.')
                     }
                   });
                 }
@@ -297,15 +305,15 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // for widgets that are yet to be created.
                 // Or if the user edited an existing map, and did not edit
                 // the lat/lon fields, and the Search field is empty.
-                if ((latInput != "" && lonInput != "") && ((latInput != latSaved && lonInput != lonSaved) || geocode == "")) {
+                if ((latInput != '' && lonInput != '') && ((latInput != latSaved && lonInput != lonSaved) || geocode == '')) {
                   latitude = latInput;
                   longitude = lonInput;
                 }
 
-                var width = jQuery(".map_width input").val() || "400";
-                var height = jQuery(".map_height input").val() || "400";
+                var width = jQuery('.map_width input').val() || '400';
+                var height = jQuery('.map_height input').val() || '400';
                 var zoom = jQuery('select.zoom').val();
-                var popUpText = jQuery(".popup-text input").val();
+                var popUpText = jQuery('.popup-text input').val();
                 var tile = jQuery('select.tile').val();
                 var alignment = jQuery('select.alignment').val();
 
@@ -363,7 +371,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.data('responsive', responsive);
 
                 // Build the full path to the map renderer.
-                mapParserPathFull = mapParserPath + "?lat=" + latitude + "&lon=" + longitude + "&width=" + width + "&height=" + height + "&zoom=" + zoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
+                mapParserPathFull = mapParserPath + '?lat=' + latitude + '&lon=' + longitude + '&width=' + width + '&height=' + height + '&zoom=' + zoom + '&text=' + popUpText + '&tile=' + tile + '&minimap=' + minimap + '&responsive=' + responsive;
 
                 // Create a new CKEditor DOM's iFrame.
                 var iframe = new CKEDITOR.dom.element('iframe');
@@ -382,9 +390,9 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 });
 
                 // If map is responsive.
-                if (responsive == "on") {
+                if (responsive == 'on') {
                   // Add a class for styling.
-                  iframe.setAttribute("class", "leaflet_iframe responsive-map-iframe");
+                  iframe.setAttribute('class', 'leaflet_iframe responsive-map-iframe');
                 }
 
                 // Insert the iframe to the widget's DIV element.
@@ -399,12 +407,12 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               type: 'checkbox',
               id: 'map_mini',
               className: 'minimap',
-              label: 'Include MiniMap',
+              label: pluginTranslation.minimapCheckboxLabel,
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
                 // Set the MiniMap check button.
-                if (widget.element.data('minimap') != "" && widget.element.data('minimap') != "on") {
+                if (widget.element.data('minimap') != '' && widget.element.data('minimap') != 'on') {
                   this.setValue('');
                 }
 
@@ -429,22 +437,22 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_alignment',
               className: 'alignment',
               type: 'select',
-              label: 'Alignment',
-              items: [['Left', 'left'], ['Right', 'right'], ['Center', 'center']],
+              label: pluginTranslation.mapAlignmentSelectFieldLabel,
+              items: [[pluginTranslation.mapAlignmentSelectOptionLeft, 'left'], [pluginTranslation.mapAlignmentSelectOptionRight, 'right'], [pluginTranslation.mapAlignmentSelectOptionCenter, 'center']],
               style: 'margin-bottom: 4px;',
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
                 // Set this map alignment's select list when
                 // the current map has been initialized and set previously.
-                if (widget.element.data('alignment') != "") {
+                if (widget.element.data('alignment') != '') {
                   // Set the alignment.
                   this.setValue(widget.element.data('alignment'));
                 }
 
                 // Set the Default alignment value.
                 else {
-                  this.setValue("left");
+                  this.setValue('left');
                 }
               },
             },
@@ -453,14 +461,14 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               type: 'checkbox',
               id: 'map_responsive',
               className: 'responsive',
-              label: 'Responsive Map (100% Width)',
+              label: pluginTranslation.responsiveMapCheckboxLabel,
               style: 'margin-top: 18px;',
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
                 // Set the Responsive check button, when editing widget.
-                if (widget.element.data('responsive') != "") {
-                  if (widget.element.data('responsive') == "on") {
+                if (widget.element.data('responsive') != '') {
+                  if (widget.element.data('responsive') == 'on') {
                     this.setValue('true');
                   }
 
