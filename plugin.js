@@ -52,7 +52,7 @@
     requires: 'widget',
 
     // Declare the supported languages.
-    lang: 'en',
+    lang: 'en,ru',
 
     init: function(editor) {
       // Access the current translation file.
