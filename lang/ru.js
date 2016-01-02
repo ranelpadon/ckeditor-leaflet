@@ -1,4 +1,4 @@
-CKEDITOR.plugins.setLang('leaflet', 'en', {
+CKEDITOR.plugins.setLang('leaflet', 'ru', {
 	buttonLabel: 'Вставит карту',
   dialogTitle: 'Карта',
   locationTabLabel: 'Местоположение',
