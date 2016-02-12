@@ -1,5 +1,11 @@
 ###CHANGELOG
 
+####Version 1.5 Released (February 12, 2016)
+
+ - Integrate language localization mechanisms.
+	 - Bundle the Russian and Basque versions/translations.
+	 - Set default plugin language to English (will be automatically overriden depending on the user's locale and if the user's localization is available in the plugin).
+
 ####Version 1.4 Released (December 30, 2015)
 
  - Implement draggable marker so that the latitude and longitude of a  place could be
