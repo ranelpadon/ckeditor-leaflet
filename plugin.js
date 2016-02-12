@@ -25,27 +25,6 @@
       Widget downcast()
    */
 
-  // Dummy global method for quick workaround of asynchronous document.write()
-  // issue of Google APIs with respect to CKEditor.
-  // See the Google APIs URL below for the query string usage of this dummy().
-  // Using this hack, the document.write(...) requirement of Google APIs
-  // will be replaced by the more 'gentle' combination of
-  // document.createElement(...) and document.body.appendChild(...).
-  window.dummy = function(){
-    // Do nothing.
-  }
-
-  // Check if jQuery is already loaded to avoid redundancy and overriding
-  // existing 3rd-party jQuery plugins' bindings to jQuery prototype.
-  if (typeof jQuery == 'undefined') {
-    // This is asynchronous loading.
-    // See also CKEDITOR.scriptLoader.queue.
-    CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
-  }
-
-  // Load other needed external library.
-  CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&sensor=false&callback=dummy');
-
   // Add a new CKEditor plugin. Note that widgets are subclass of plugins.
   CKEDITOR.plugins.add('leaflet', {
     // Declare dependencies.
@@ -55,6 +34,27 @@
     lang: 'en,ru,eu',
 
     init: function(editor) {
+      // Dummy global method for quick workaround of asynchronous document.write()
+      // issue of Google APIs with respect to CKEditor.
+      // See the Google APIs URL below for the query string usage of this dummy().
+      // Using this hack, the document.write(...) requirement of Google APIs
+      // will be replaced by the more 'gentle' combination of
+      // document.createElement(...) and document.body.appendChild(...).
+      window.dummy = function() {
+        // Do nothing.
+      }
+
+      // Check if jQuery is already loaded to avoid redundancy and overriding
+      // existing 3rd-party jQuery plugins' bindings to jQuery prototype.
+      if (typeof jQuery == 'undefined') {
+        // This is asynchronous loading.
+        // See also CKEDITOR.scriptLoader.queue.
+        CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
+      }
+
+      // Load other needed external library.
+      CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy');
+
       // Access the current translation file.
       var pluginTranslation = editor.lang.leaflet;
 
