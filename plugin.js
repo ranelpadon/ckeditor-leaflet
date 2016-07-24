@@ -49,7 +49,7 @@
       if (typeof jQuery == 'undefined') {
         // This is asynchronous loading.
         // See also CKEDITOR.scriptLoader.queue.
-        CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.11.0.min.js');
+        CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.12.4.min.js');
       }
 
       // Load other needed external library.
