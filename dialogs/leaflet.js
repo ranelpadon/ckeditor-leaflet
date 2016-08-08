@@ -237,17 +237,23 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_tile',
               className: 'tile',
               label: pluginTranslation.baseMapTileLabel,
-              items: [['MapQuestOpen.OSM'], ['MapQuestOpen.Aerial'], ['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.DeLorme'], ['Esri.NatGeoWorldMap'], ['Esri.WorldPhysical'], ['Esri.WorldTopoMap'], ['Thunderforest.OpenCycleMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
+              items: [['OpenStreetMap.Mapnik'], ['OpenStreetMap.DE'], ['OpenStreetMap.HOT'], ['Esri.DeLorme'], ['Esri.NatGeoWorldMap'], ['Esri.WorldPhysical'], ['Esri.WorldTopoMap'], ['Thunderforest.OpenCycleMap'], ['Thunderforest.Landscape'], ['Stamen.Watercolor']],
 
               // This will execute also every time you edit/double-click the widget.
               setup: function(widget) {
+                var restrictedTiles = ['MapQuestOpen.Aerial', 'MapQuestOpen.OSM'];
+
+                var tile = widget.element.data('tile');
+
                 // Set the Tile data attribute.
-                if (widget.element.data('tile') != '') {
-                  this.setValue(widget.element.data('tile'));
+                // Must not be the restricted, MapQuest tiles.
+                if ( tile != '' && restrictedTiles.indexOf(tile) == -1 ) {
+                  this.setValue(tile);
                 }
 
                 else {
                   // Set the default value.
+                  // Includes the case for existing MapQuest tiles.
                   this.setValue('OpenStreetMap.Mapnik');
                 }
               },
