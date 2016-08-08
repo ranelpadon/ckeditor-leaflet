@@ -118,6 +118,13 @@
       // Choose the Map Tile provider e.g. "Esri.WorldTopoMap"
       var mapTileProvider = tile;
 
+      var restrictedTiles = ['MapQuestOpen.Aerial', 'MapQuestOpen.OSM'];
+
+      // Redirect MapQuest tiles to OpenStreetMap tiles.
+      if (restrictedTiles.indexOf(mapTileProvider) != -1) {
+        mapTileProvider = 'OpenStreetMap.Mapnik';
+      }
+
       // Set the base map.
       var mapTile = L.tileLayer.provider(mapTileProvider, { attribution: "Map Tile: " + mapTileProvider });
       mapTile.addTo(map);
