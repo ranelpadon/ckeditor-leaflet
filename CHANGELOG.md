@@ -1,5 +1,14 @@
 ###CHANGELOG
 
+####Version 1.6 Released (August 9, 2016)
+
+ - Remove **MapQuest** from the available map tiles since it now requires access key and the previous setup causes rendering errors.
+ - Make the *existing* **MapQuest** tiles auto-redirect to **OpenStreetMap.Mapnik** tiles for back compatibility and prevent manual conversion of MapQuest tiles.
+ - Make the **OpenStreetMap.Mapnik** as the default map tile provider for *new* widgets.
+ - Include a demo page featuring the latest CDN-hosted `ckeditor.js` file.
+ - Update the default jQuery version to the latest 1.x version (1.12.4)
+ - Prevent unnecessary loading of external scripts when the plugin is already disabled via `config.removePlugins`.
+
 ####Version 1.5 Released (February 12, 2016)
 
  - Integrate language localization mechanisms.
