@@ -21,7 +21,7 @@ This plugin utilizes the following technologies/libraries: <br>
 Main features/highlights: <br>
 <ul>
   <li>Auto-searching of map coordinates using Google Search with Geocoding.</li>
-  <li>12 available map tiles, including OpenStreetMap and MapQuest.</li>
+  <li>12 available map tiles, including OpenStreetMap.</li>
   <li>Map could include a minimap/overview map for better map context.</li>
   <li>Map could be responsive (100% width).</li>
   <li>Map could be customized with the specified width and height dimensions.</li>
