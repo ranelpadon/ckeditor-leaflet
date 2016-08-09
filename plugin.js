@@ -31,7 +31,7 @@
     requires: 'widget',
 
     // Declare the supported languages.
-    lang: 'en,ru,eu',
+    lang: 'de,en,eu,ru',
 
     init: function(editor) {
       // Dummy global method for quick workaround of asynchronous document.write()
