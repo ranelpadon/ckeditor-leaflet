@@ -15,9 +15,5 @@
   mapZoomLevelFieldLabel: 'Zoom',
   baseMapTileLabel: 'Quelle Kartenmaterial',
   minimapCheckboxLabel: 'Übersichtskarte',
-  mapAlignmentSelectFieldLabel: 'Ausrichtung',
-  mapAlignmentSelectOptionLeft: 'Links',
-  mapAlignmentSelectOptionRight: 'Rechts',
-  mapAlignmentSelectOptionCenter: 'Zentriert',
   responsiveMapCheckboxLabel: 'Responsive',
 });

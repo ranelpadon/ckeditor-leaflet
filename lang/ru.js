@@ -15,9 +15,5 @@ CKEDITOR.plugins.setLang('leaflet', 'ru', {
   mapZoomLevelFieldLabel: 'Масштаб',
   baseMapTileLabel: 'Вид карты',
   minimapCheckboxLabel: 'Включить миникарту',
-  mapAlignmentSelectFieldLabel: 'Выравнивание',
-  mapAlignmentSelectOptionLeft: 'Влево',
-  mapAlignmentSelectOptionRight: 'Вправо',
-  mapAlignmentSelectOptionCenter: 'По центру',
   responsiveMapCheckboxLabel: 'Адаптивная карта (ширина 100%)',
 });

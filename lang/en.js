@@ -16,9 +16,5 @@ CKEDITOR.plugins.setLang('leaflet', 'en', {
   mapZoomLevelFieldLabel: 'Zoom Level',
   baseMapTileLabel: 'Base Map Tile',
   minimapCheckboxLabel: 'Include MiniMap',
-  mapAlignmentSelectFieldLabel: 'Alignment',
-  mapAlignmentSelectOptionLeft: 'Left',
-  mapAlignmentSelectOptionRight: 'Right',
-  mapAlignmentSelectOptionCenter: 'Center',
   responsiveMapCheckboxLabel: 'Responsive Map (100% Width)',
 });

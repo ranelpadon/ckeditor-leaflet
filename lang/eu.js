@@ -15,9 +15,5 @@ CKEDITOR.plugins.setLang('leaflet', 'eu', {
   mapZoomLevelFieldLabel: 'Zoom maila',
   baseMapTileLabel: 'Maparen lauzak',
   minimapCheckboxLabel: 'Bistaratu mapatxoa',
-  mapAlignmentSelectFieldLabel: 'Lerrokatu',
-  mapAlignmentSelectOptionLeft: 'Ezkerrean',
-  mapAlignmentSelectOptionRight: 'Eskuinean',
-  mapAlignmentSelectOptionCenter: 'Erdian',
   responsiveMapCheckboxLabel: 'Mapa moldakorra (100% zabalera)',
 });

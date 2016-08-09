@@ -4,6 +4,9 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
   // Access the current translation file.
   var pluginTranslation = editor.lang.leaflet;
 
+  // Use the core translation file. Used mainly for the `Alignment` values.
+  var commonTranslation = editor.lang.common;
+
   // Dialog's function callback for the Leaflet Map Widget.
   return {
     title: pluginTranslation.dialogTitle,
@@ -443,8 +446,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               id: 'map_alignment',
               className: 'alignment',
               type: 'select',
-              label: pluginTranslation.mapAlignmentSelectFieldLabel,
-              items: [[pluginTranslation.mapAlignmentSelectOptionLeft, 'left'], [pluginTranslation.mapAlignmentSelectOptionRight, 'right'], [pluginTranslation.mapAlignmentSelectOptionCenter, 'center']],
+              label: commonTranslation.align,
+              items: [[commonTranslation.alignLeft, 'left'], [commonTranslation.alignRight, 'right'], [commonTranslation.alignCenter, 'center']],
               style: 'margin-bottom: 4px;',
 
               // This will execute also every time you edit/double-click the widget.
