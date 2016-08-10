@@ -12,6 +12,15 @@ For Linux users, after downloading, make sure that the zipped folders or the tar
     "sudo chmod 777 -R lineutils", and "sudo chmod 777 -R widget" before or after copying them
     in the appropriate CKEditor folders.
 
+IMPORTANT NOTE:
+Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API". However as of June 22, 2016, Google will now require access key, especially for new website domains. See the announcement and link on how to get a Google API key: 
+    http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html
+
+Note that the plugin uses my personal key by default, so Google API's standard usage quota will apply, especially if many users will simultaneously use my plugin. Hence, it's strongly recommended that the user create his own Google API key asap (see link above), and set his personal key via CKEditor's config file (config.js) in this manner:
+    config.leaflet_maps_google_api_key = '<YOUR GOOGLE API KEY HERE>';
+
+See further instructions on it below.
+
 
 II. STANDARD INSTALLATION (Usual Setup)
 
@@ -24,9 +33,11 @@ II. STANDARD INSTALLATION (Usual Setup)
 2) Edit the "ckeditor/config.js" file, and add the following:
     if there's no existing line yet:
         config.extraPlugins = "lineutils,widget,leaflet";
+        config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
 
     otherwise, append it to the existing list, no extra spaces are allowed:
         config.extraPlugins = "existing_plugin,another_existing_plugin,lineutils,widget,leaflet";
+        config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
 
 3.) Just to make sure, clear the web browser's cache after modifying your configuration.
     Clearing the browser's cache is also very important
@@ -90,6 +101,12 @@ A. DRUPAL INSTALLATION OPTION 1 (EASIER SETUP)
             In EDITOR APPEARANCE >>> Toolbar section:
             Drag the Leaflet Maps icon (black-colored) from the 'All Buttons' section
             to the 'Used Buttons' section.
+
+        C. Specify the Google API key (used mainly for autocomplete/geocoding functionalities):
+            As indicated in the OVERVIEW section above, Google API key is now required.
+            In ADVANCED OPTIONS >>> Custom JavaScript Configuration:
+            Set your personal Google API key (I've provided my personal key as sample):
+                config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
 
     3.) Then, click the Save button. Clear the Drupal's overall cache AND
         clear the browser's cache. Clearing the browser's cache is also
@@ -171,6 +188,12 @@ B. DRUPAL INSTALLATION OPTION 2
             In EDITOR APPEARANCE >>> Toolbar section:
             Drag the Leaflet Maps icon (black-colored) from the 'All Buttons' section
             to the 'Used Buttons' section.
+
+        C. Specify the Google API key (used mainly for autocomplete/geocoding functionalities):
+            As indicated in the OVERVIEW section above, Google API key is now required.
+            In ADVANCED OPTIONS >>> Custom JavaScript Configuration:
+            Set your personal Google API key (I've provided my personal key as sample):
+                config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
 
     3.) Then, click the Save button. Clear the Drupal's overall cache AND
         clear the browser's cache. Clearing the browser's cache is also
