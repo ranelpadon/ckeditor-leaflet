@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Test Page of CKEditor Leaflet Maps</title>
-        <!-- <script src="../../../ckeditor.js"></script> -->
         <script src="http://cdn.ckeditor.com/4.5.10/standard-all/ckeditor.js"></script>
         <style>
             #cke_my_editor {
@@ -196,9 +195,15 @@
                 var relativePath = location.pathname;            
                 var leafletIndex = relativePath.indexOf(leaflet);
                 var leafletPluginFolderRelativePath = relativePath.substring(0, leafletIndex);
-                
+
                 // Load a local plugin in the CDN-hosted CKEditor.js core.
                 CKEDITOR.plugins.addExternal(leaflet, leafletPluginFolderRelativePath + leaflet + '/');
+
+                // Specify the custom key.
+                // Here's using my personal Google API key, it's the default value also.
+                // but not recommended for Production use.
+                // It's advised that you create your own key in your Google account.
+                CKEDITOR.config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
                 
                 // Activate the plugins.
                 CKEDITOR.config.extraPlugins = 'lineutils,widget,leaflet,sourcearea';

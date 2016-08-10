@@ -34,6 +34,8 @@
     lang: 'de,en,eu,ru',
 
     init: function(editor) {
+      var config = editor.config;
+
       // Dummy global method for quick workaround of asynchronous document.write()
       // issue of Google APIs with respect to CKEditor.
       // See the Google APIs URL below for the query string usage of this dummy().
@@ -52,8 +54,16 @@
         CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.12.4.min.js');
       }
 
+      // Default value, but eventually will reach its quota if many users 
+      // will just utilize this key instead of creating their own.
+      var googleApiKey = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
+
+      if (typeof config.leaflet_maps_google_api_key != 'undefined' && config.leaflet_maps_google_api_key != '') {
+        googleApiKey = config.leaflet_maps_google_api_key;
+      }
+
       // Load other needed external library.
-      CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy');
+      CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey);
 
       // Access the current translation file.
       var pluginTranslation = editor.lang.leaflet;
@@ -165,12 +175,12 @@
       // Append the widget's styles when in the CKEditor edit page,
       // added for better user experience.
       // Assign or append the widget's styles depending on the existing setup.
-      if (typeof editor.config.contentsCss == 'object') {
-          editor.config.contentsCss.push(CKEDITOR.getUrl(this.path + 'css/contents.css'));
+      if (typeof config.contentsCss == 'object') {
+          config.contentsCss.push(CKEDITOR.getUrl(this.path + 'css/contents.css'));
       }
 
       else {
-        editor.config.contentsCss = [editor.config.contentsCss, CKEDITOR.getUrl(this.path + 'css/contents.css')];
+        config.contentsCss = [config.contentsCss, CKEDITOR.getUrl(this.path + 'css/contents.css')];
       }
     },
   });
