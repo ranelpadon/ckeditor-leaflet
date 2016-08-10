@@ -199,14 +199,16 @@
                 // Load a local plugin in the CDN-hosted CKEditor.js core.
                 CKEDITOR.plugins.addExternal(leaflet, leafletPluginFolderRelativePath + leaflet + '/');
 
+                var config = CKEDITOR.config;
+
                 // Specify the custom key.
                 // Here's using my personal Google API key, it's the default value also.
                 // but not recommended for Production use.
                 // It's advised that you create your own key in your Google account.
-                CKEDITOR.config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
+                config.leaflet_maps_google_api_key = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
                 
                 // Activate the plugins.
-                CKEDITOR.config.extraPlugins = 'lineutils,widget,leaflet,sourcearea';
+                config.extraPlugins = 'lineutils,widget,leaflet,sourcearea';
 
                 var editor;
 
