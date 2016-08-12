@@ -38,8 +38,23 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             // 'Enter a location'.
             jQuery('.geocode input').attr('placeholder', pluginTranslation.googleSearchFieldHint);
 
-            // Bind the Search field to the Autocomplete widget.
-            var autocomplete = new google.maps.places.Autocomplete(input);
+            var config = editor.config;
+
+            // Default value, but eventually will reach its quota if many users
+            // will just utilize this key instead of creating their own.
+            var googleApiKey = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
+
+            if (typeof config.leaflet_maps_google_api_key != 'undefined' && config.leaflet_maps_google_api_key != '') {
+              googleApiKey = config.leaflet_maps_google_api_key;
+            }
+
+            // Load other needed external library.
+            // Wait for the script to finish loading before binding
+            // the autocomplete mechanism to prevent rendering issue.
+            CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey, function() {
+              // Bind the Search field to the Autocomplete widget.
+              var autocomplete = new google.maps.places.Autocomplete(input);
+            });
 
             // Fix for the Google's type-ahead search displaying behind
             // the widgets dialog window.

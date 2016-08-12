@@ -54,17 +54,6 @@
         CKEDITOR.scriptLoader.load('//code.jquery.com/jquery-1.12.4.min.js');
       }
 
-      // Default value, but eventually will reach its quota if many users 
-      // will just utilize this key instead of creating their own.
-      var googleApiKey = 'AIzaSyA9ySM6msnGm0qQB1L1cLTMBdKEUKPySmQ';
-
-      if (typeof config.leaflet_maps_google_api_key != 'undefined' && config.leaflet_maps_google_api_key != '') {
-        googleApiKey = config.leaflet_maps_google_api_key;
-      }
-
-      // Load other needed external library.
-      CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey);
-
       // Access the current translation file.
       var pluginTranslation = editor.lang.leaflet;
 
