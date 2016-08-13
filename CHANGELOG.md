@@ -1,11 +1,21 @@
 ###CHANGELOG
 
+####Version 1.7 Released (August 13, 2016)
+
+ - Fix issue in autocomplete feature not working on some website domains due to the Google's recent policy changes regarding access keys, effective since June 22, 2016. See their [official announcement](http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html).
+ - Refactor the code to load the Google Maps JS API script only when the plugin's dialog window pops-out to minimize the Google Maps JS API key usage. Thanks to [@smartcorestudio](https://github.com/smartcorestudio) for the suggestion.
+ - Update [Installation Guide](https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt) regarding the usage/integration of Google Maps JS API key and how to [create your own key](https://developers.google.com/maps/documentation/javascript/get-api-key). Make sure to enable the **Google Maps JavaScript API** in your **Google API Console** to activate your key.
+ - Update the demo page to illustrate the use of the Google Maps JS API key.
+ - Implement **dynamic language switcher mechanism** in the [demo page](http://www.ranelpadon.com/sites/all/libraries/ckeditor/plugins/leaflet/demo/index.html) to showcase the translation support and the available translation files.
+ - Add the German language support/translation, thanks to Stefan Berger (stefan@berger.net).
+ - Utilize the CKEditor's native translation strings for **Alignment**, **Align Right**, **Align Left**, and **Center** for more accurate translation and smaller plugin's translation files.
+
 ####Version 1.6 Released (August 9, 2016)
 
- - Remove **MapQuest** from the available map tiles since it now requires access key and the previous setup causes rendering errors.
+ - Remove **MapQuest** from the available map tiles since it now requires access key and the previous setup causes rendering errors. Thanks to [@howellcc](https://github.com/howellcc) for bringing it up.
  - Make the *existing* **MapQuest** tiles auto-redirect to **OpenStreetMap.Mapnik** tiles for back compatibility and prevent manual conversion of MapQuest tiles.
  - Make the **OpenStreetMap.Mapnik** as the default map tile provider for *new* widgets.
- - Include a demo page featuring the latest CDN-hosted `ckeditor.js` file.
+ - Include a demo page featuring the latest CDN-hosted `ckeditor.js` file. The **Leaflet Maps** plugin folder is all you need now to render the bundled demo page since all dependencies (including languages) will be pulled from the CDN-hosted files. Note that you need to put the plugin folder in a web server context (e.g. localhost or virtual host setup) to render the demo page properly; opening the **demo/index.html** file directly in a browser as a regular file will not work.
  - Update the default jQuery version to the latest 1.x version (1.12.4)
  - Prevent unnecessary loading of external scripts when the plugin is already disabled via `config.removePlugins`.
 
@@ -13,6 +23,8 @@
 
  - Integrate language localization mechanisms.
 	 - Bundle the Russian and Basque versions/translations.
+		 - Thanks to [@smartcorestudio](https://github.com/smartcorestudio) for the Russian translation.
+		 - Thanks to [@aldatsa](https://github.com/aldatsa) for the Basque translation.
 	 - Set default plugin language to English (will be automatically overriden depending on the user's locale and if the user's localization is available in the plugin).
 
 ####Version 1.4 Released (December 30, 2015)
