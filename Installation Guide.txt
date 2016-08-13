@@ -13,9 +13,13 @@ For Linux users, after downloading, make sure that the zipped folders or the tar
     in the appropriate CKEditor folders.
 
 IMPORTANT NOTE:
-Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API". However as of June 22, 2016, Google will now require access key, especially for new website domains. See the announcement and link on how to get a Google API key: 
+Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API". However as of June 22, 2016, Google will now require access key, especially for new website domains. See the Goggle's official announcement:
     http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html
 
+Create your own Google Maps JS API key w/ this guide:
+    https://developers.google.com/maps/documentation/javascript/get-api-key
+
+Make sure to ENABLE the "Google Maps JavaScript API" in your "Google API Console" account/dashboard to activate your key.
 Note that the plugin uses my personal key by default, so Google API's standard usage quota will apply, especially if many users will simultaneously use my plugin. Hence, it's strongly recommended that the user create his own Google API key asap (see link above), and set his personal key via CKEditor's config file (config.js) in this manner:
     config.leaflet_maps_google_api_key = '<YOUR GOOGLE API KEY HERE>';
 
