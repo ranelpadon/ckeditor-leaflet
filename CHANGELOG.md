@@ -2,7 +2,7 @@
 
 ####Version 1.7 Released (August 13, 2016)
 
- - Fix issue in autocomplete feature not working on some website domains due to the Google's recent policy changes regarding access keys, effective since June 22, 2016. See their [official announcement](http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html).
+ - Fix issue in autocomplete feature not working on some website domains due to the Google's recent policy changes regarding access keys, effective since June 22, 2016. See their [official announcement](http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html). Thanks to [@smartcorestudio](https://github.com/smartcorestudio) for bringing this up.
  - Refactor the code to load the Google Maps JS API script only when the plugin's dialog window pops-out to minimize the Google Maps JS API key usage. Thanks to [@smartcorestudio](https://github.com/smartcorestudio) for the suggestion.
  - Update [Installation Guide](https://github.com/ranelpadon/ckeditor-leaflet/blob/master/Installation%20Guide.txt) regarding the usage/integration of Google Maps JS API key and how to [create your own key](https://developers.google.com/maps/documentation/javascript/get-api-key). Make sure to enable the **Google Maps JavaScript API** in your **Google API Console** to activate your key.
  - Update the demo page to illustrate the use of the Google Maps JS API key.
@@ -17,7 +17,7 @@
  - Make the **OpenStreetMap.Mapnik** as the default map tile provider for *new* widgets.
  - Include a demo page featuring the latest CDN-hosted `ckeditor.js` file. The **Leaflet Maps** plugin folder is all you need now to render the bundled demo page since all dependencies (including languages) will be pulled from the CDN-hosted files. Note that you need to put the plugin folder in a web server context (e.g. localhost or virtual host setup) to render the demo page properly; opening the **demo/index.html** file directly in a browser as a regular file will not work.
  - Update the default jQuery version to the latest 1.x version (1.12.4)
- - Prevent unnecessary loading of external scripts when the plugin is already disabled via `config.removePlugins`.
+ - Prevent unnecessary loading of external scripts when the plugin is already disabled via `config.removePlugins`. Thanks to [@SDKiller](https://github.com/SDKiller) for bringing this up.
 
 ####Version 1.5 Released (February 12, 2016)
 
