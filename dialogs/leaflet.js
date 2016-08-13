@@ -48,13 +48,16 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               googleApiKey = config.leaflet_maps_google_api_key;
             }
 
-            // Load other needed external library.
-            // Wait for the script to finish loading before binding
-            // the autocomplete mechanism to prevent rendering issue.
-            CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey, function() {
-              // Bind the Search field to the Autocomplete widget.
-              var autocomplete = new google.maps.places.Autocomplete(input);
-            });
+            // Execute only once, and not every dialog pop-up.
+            if (typeof google == 'undefined') {
+              // Load other needed external library.
+              // Wait for the script to finish loading before binding
+              // the autocomplete mechanism to prevent rendering issue.
+              CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey, function() {
+                // Bind the Search field to the Autocomplete widget.
+                var autocomplete = new google.maps.places.Autocomplete(input);
+              });
+            }
 
             // Fix for the Google's type-ahead search displaying behind
             // the widgets dialog window.
