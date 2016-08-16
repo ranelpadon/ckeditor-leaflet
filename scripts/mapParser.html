@@ -103,7 +103,7 @@
       }
 
       // Retrive the popup text that will be used by the marker.
-      var popUpText = queryString["text"];
+      var popUpText = decodeURIComponent(queryString["text"]);
 
       // Retrieve the Base Map's Tile to be used.
       var tile = queryString["tile"];
