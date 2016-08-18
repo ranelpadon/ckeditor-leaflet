@@ -30,7 +30,9 @@ and set his personal key via CKEditor's config file (config.js) in this manner:
 
 See further instructions on it below.
 
-Moreover, the plugin now bundles a stand-alone demo page (demo/index.html).
+Moreover, the plugin now bundles a stand-alone demo page (demo/index.html)
+which showcases the various map tiles, map options, and languages/translations.
+Translations could be switched dynamically in the demo page using the language switcher's select list.
 The Leaflet Maps plugin folder is all you need to render the bundled demo page since all its dependencies
 (including widget's dependencies and languages) will be pulled from the CDN-hosted files.
 Note that you need to put the plugin folder in a web server context (e.g. localhost or virtual host setup)
