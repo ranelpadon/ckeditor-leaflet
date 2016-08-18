@@ -12,7 +12,7 @@ For Linux users, after downloading, make sure that the zipped folders or the tar
     "sudo chmod 777 -R lineutils", and "sudo chmod 777 -R widget" before or after copying them
     in the appropriate CKEditor folders.
 
-IMPORTANT NOTE:
+GOOGLE POLICY CHANGES:
 Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API".
 However as of June 22, 2016, Google will now require access key, especially for new website domains.
 See the Goggle's official announcement:
@@ -30,6 +30,7 @@ and set his personal key via CKEditor's config file (config.js) in this manner:
 
 See further instructions on it below.
 
+DEMO PAGE:
 Moreover, the plugin now bundles a stand-alone demo page (demo/index.html)
 which showcases the various map tiles, map options, and languages/translations.
 Translations could be switched dynamically in the demo page using the language switcher's select list.
