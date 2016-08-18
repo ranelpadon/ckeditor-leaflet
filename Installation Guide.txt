@@ -13,17 +13,28 @@ For Linux users, after downloading, make sure that the zipped folders or the tar
     in the appropriate CKEditor folders.
 
 IMPORTANT NOTE:
-Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API". However as of June 22, 2016, Google will now require access key, especially for new website domains. See the Goggle's official announcement:
+Leaflet Maps plugin uses the "Autocomplete" and "GeoCoding" components of "Google Places API".
+However as of June 22, 2016, Google will now require access key, especially for new website domains.
+See the Goggle's official announcement:
     http://googlegeodevelopers.blogspot.com.au/2016/06/building-for-scale-updates-to-google.html
 
 Create your own Google Maps JS API key w/ this guide:
     https://developers.google.com/maps/documentation/javascript/get-api-key
 
 Make sure to ENABLE the "Google Maps JavaScript API" in your "Google API Console" account/dashboard to activate your key.
-Note that the plugin uses my personal key by default, so Google API's standard usage quota will apply, especially if many users will simultaneously use my plugin. Hence, it's strongly recommended that the user create his own Google API key asap (see link above), and set his personal key via CKEditor's config file (config.js) in this manner:
+Note that the plugin uses my personal key by default, so Google API's standard usage quota will apply,
+especially if many users will simultaneously use my plugin.
+Hence, it's strongly recommended that the user create his own Google API key asap (see link above),
+and set his personal key via CKEditor's config file (config.js) in this manner:
     config.leaflet_maps_google_api_key = '<YOUR GOOGLE API KEY HERE>';
 
 See further instructions on it below.
+
+Moreover, the plugin now bundles a stand-alone demo page (demo/index.html).
+The Leaflet Maps plugin folder is all you need to render the bundled demo page since all its dependencies
+(including widget's dependencies and languages) will be pulled from the CDN-hosted files.
+Note that you need to put the plugin folder in a web server context (e.g. localhost or virtual host setup)
+to render the demo page properly; opening the demo/index.html file directly in a browser as a regular file will not work.
 
 
 II. STANDARD INSTALLATION (Usual Setup)
@@ -227,7 +238,7 @@ Furthermore, this widget utilizes CSS classes to have a more maintainable stylin
 instead of bombarding the widget with inline styles resulting to a cluttered markup.
 In Drupal, when you save the page after editing it with CKEditor, inline styles will be
 discarded by Drupal by default, again for security purposes. Thus, for cases like this,
-you need to load the contents of the wdiget's CSS file 'leaflet/css/contents.css'
+you need to load the contents of the widget's CSS file 'leaflet/css/contents.css'
 to pages that will render the Leaflet Maps. This is very important if you want to make
 the position/alignment or responsive behavior work as intended. You could add the style file
 to your site's theme or global/core CSS file. In Drupal, you could easily add the styles
