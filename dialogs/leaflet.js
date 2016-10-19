@@ -1,4 +1,5 @@
 CKEDITOR.dialog.add('leaflet', function(editor) {
+  var autocomplete;
   var mapContainer = '';
 
   // Access the current translation file.
@@ -29,9 +30,9 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             this.setValue('');
           },
 
-          onShow: function (widget) {
+          onLoad: function (widget) {
             // Get the DOM reference for the Search field.
-            var input = jQuery('.geocode input')[0];
+            var input = this.getInputElement().$;
 
             // Set a diffused/default text for better user experience.
             // This will override the Google's default placeholder text:
@@ -55,8 +56,10 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               // the autocomplete mechanism to prevent rendering issue.
               CKEDITOR.scriptLoader.load('//maps.googleapis.com/maps/api/js?libraries=places&callback=dummy&key=' + googleApiKey, function() {
                 // Bind the Search field to the Autocomplete widget.
-                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete = new google.maps.places.Autocomplete(input);
               });
+            } else {
+                autocomplete = new google.maps.places.Autocomplete(input);
             }
 
             // Fix for the Google's type-ahead search displaying behind
@@ -155,7 +158,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
             else {
               // Set a diffused/default text for better user experience.
-              jQuery('.popup-text input').attr('placeholder', pluginTranslation.popupTextFieldHint)
+              this.getInputElement().setAttribute('placeholder', pluginTranslation.popupTextFieldHint)
             }
           },
         },
@@ -182,7 +185,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
-                jQuery('.map_width input').attr('placeholder', '400')
+                this.getInputElement().setAttribute('placeholder', '400')
 
                 // Set the map width value if widget has a previous value.
                 if (widget.element.data('width') != '') {
@@ -199,7 +202,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
               setup: function(widget) {
                 // Set a diffused/default text for better user experience.
-                jQuery('.map_height input').attr('placeholder', '400');
+                this.getInputElement().setAttribute('placeholder', '400');
 
                 // Set the map height value if widget has a previous value.
                 if (widget.element.data('height') != '') {
@@ -282,11 +285,13 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               // This will execute every time you click the Dialog's OK button.
               // It will inject a map iframe in the CKEditor page.
               commit: function(widget) {
+                var dialog = this.getDialog();
+
                 // Remove the iframe if it has one.
                 widget.element.setHtml('');
 
                 // Retrieve the value in the Search field.
-                var geocode = jQuery('.geocode input').val();
+                var geocode = dialog.getContentElement('location_tab','map_geocode').getValue();
                 var latitude, longitude;
 
                 if (geocode != '') {
@@ -318,8 +323,8 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 }
 
                 // Get the Lat/Lon values from the corresponding fields.
-                var latInput = jQuery('.latitude input').val();
-                var lonInput = jQuery('.longitude input').val();
+                var latInput = dialog.getContentElement('location_tab','map_latitude').getValue();
+                var lonInput = dialog.getContentElement('location_tab','map_longitude').getValue();
 
                 // Get the data-lat and data-lon values.
                 // It is empty for yet to be created widgets.
@@ -337,20 +342,15 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                   longitude = lonInput;
                 }
 
-                var width = jQuery('.map_width input').val() || '400';
-                var height = jQuery('.map_height input').val() || '400';
-                var zoom = jQuery('select.zoom').val();
-                var popUpText = jQuery('.popup-text input').val();
-                var tile = jQuery('select.tile').val();
-                var alignment = jQuery('select.alignment').val();
+                var width = dialog.getContentElement('options_tab','width').getValue() || '400';
+                var height = dialog.getContentElement('options_tab','height').getValue() || '400';
+                var zoom = dialog.getContentElement('options_tab','map_zoom').getValue();
+                var popUpText = dialog.getContentElement('location_tab','popup_text').getValue();
+                var tile = dialog.getContentElement('options_tab','map_tile').getValue();
+                var alignment = dialog.getContentElement('options_tab','map_alignment').getValue();
 
-                // Returns 'on' or 'undefined'.
-                var minimap = jQuery('.minimap input:checked').val();
-
-                // Use 'off' if the MiniMap checkbox is unchecked.
-                if (minimap == undefined) {
-                  minimap = 'off';
-                }
+                // Returns 'on' or 'off'.
+                var minimap = dialog.getContentElement('options_tab','map_mini').getValue()?'on':'off';
 
                 // Get a unique timestamp:
                 var milliseconds = new Date().getTime();
@@ -377,13 +377,11 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Set the alignment for this map.
                 widget.element.addClass('align-' + alignment);
 
-                // Returns 'on' or 'undefined'.
-                var responsive = jQuery('.responsive input:checked').val();
+                // Returns 'on' or 'off'.
+                var responsive = dialog.getContentElement('options_tab','map_responsive').getValue()?'on':'off';
 
                 // Use 'off' if the Responsive checkbox is unchecked.
-                if (responsive == undefined) {
-                  responsive = 'off';
-
+                if (responsive === 'off') {
                   // Remove the previously set responsive map class,
                   // if there's any.
                   widget.element.removeClass('responsive-map');
@@ -424,9 +422,6 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
 
                 // Insert the iframe to the widget's DIV element.
                 widget.element.append(iframe);
-
-                // Reset/clear the map iframe/DOM object reference.
-                mapContainer = '';
               },
             },
 
@@ -513,6 +508,11 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
           ]
         }
       ]
-    }]
+    }],
+    onHide: function(){
+      // Reset/clear the map iframe/DOM object reference.
+      // Fixes bug with lon/lat/zoom artifact values when closing dialog by pressing anything except ok.
+      mapContainer = '';
+    }
   };
 });
