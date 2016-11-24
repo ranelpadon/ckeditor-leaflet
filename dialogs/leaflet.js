@@ -163,23 +163,6 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
               className: 'geo_json',
               type: 'textarea',
               label: pluginTranslation.manualGeoJSON,
-
-              /* setup: function(widget) { */
-              /*   // Set the Lat values if widget has previous value. */
-              /*   if (widget.element.data('lat') !== '') { */
-              /*     // Update the data-lat based on the map lat in iframe. */
-              /*     // Make sure that mapContainer is set. */
-              /*     // Also avoids setting it again since zoom/longitude */
-              /*     // might already computed/set this object. */
-              /*     if (mapContainer === '') { */
-              /*       mapContainer = widget.element.getChild(0).$.contentDocument.getElementById('map_container'); */
-              /*     } */
-
-              /*     var currentLat = mapContainer.getAttribute('data-lat'); */
-
-              /*     this.setValue(currentLat); */
-              /*   } */
-              /* }, */
             },
           ]
         },
@@ -452,10 +435,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.data('responsive', responsive);
 
                 // Build the full path to the map renderer.
-                mapParserPathFull = mapParserPath + '?lat=' + latitude + '&lon=' + longitude + '&width=' + width + '&height=' + height + '&zoom=' + zoom + '&text=' + popUpText + '&tile=' + tile + '&minimap=' + minimap + '&responsive=' + responsive;
-                if (geoJSON) {
-                  mapParserPathFull += '&json=' + encodeURIComponent(JSONstr);
-                }
+                mapParserPathFull = mapParserPath + '?lat=' + latitude + '&lon=' + longitude + '&width=' + width + '&height=' + height + '&zoom=' + zoom + '&text=' + popUpText + '&tile=' + tile + '&minimap=' + minimap + '&responsive=' + responsive + '&json=' + encodeURIComponent(JSONstr);
 
                 // Create a new CKEditor DOM's iFrame.
                 var iframe = new CKEDITOR.dom.element('iframe');

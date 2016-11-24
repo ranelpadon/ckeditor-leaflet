@@ -63,7 +63,7 @@
     </style>
   </head>
   <body>
-    <div id='map_container' data-lat="" data-lon="" data-zoom=""></div>
+    <div id='map_container' data-lat="" data-lon="" data-json="" data-zoom=""></div>
     <script type="text/javascript">
       // Get the DOM node to which we will append the map.
       // In our setup the map container is a DIV element.
@@ -78,15 +78,15 @@
       var longitude= queryString["lon"];
       var json = queryString["json"];
       var zoom = queryString["zoom"];
-    
-      if (json) {
-        json = JSON.parse(decodeURIComponent(json));
-      }
-
+      
       // Initialize the mapDiv data attributes.
       mapDiv.setAttribute("data-lat", latitude);
       mapDiv.setAttribute("data-lon", longitude);
       mapDiv.setAttribute("data-zoom", zoom);
+      if (json) {
+        mapDiv.setAttribute("data-json", json);
+        json = JSON.parse(decodeURIComponent(json));
+      }
 
       // Convert the parameters to their numeric equivalent.
       // Otherwise, initializing the Leaflet map object will not work.
