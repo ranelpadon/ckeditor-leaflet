@@ -6,6 +6,7 @@ CKEDITOR.plugins.setLang('leaflet', 'en', {
   googleSearchFieldLabel: 'Auto-Complete Search Using Google',
   googleSearchFieldHint: 'Enter a place name here',
   manualCoordinatesFieldLabel: 'Manual Input of Coordinates',
+  manualGeoJSONFieldLabel: 'Manual Input of Geo JSON',
   manualLatitudeFieldLabel: 'Latitude',
   manualLongitudeFieldLabel: 'Longitude',
   popupTextFieldLabel: 'Pop-up Text (Optional)',

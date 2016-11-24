@@ -76,7 +76,12 @@
       // Fetch the most important attributes.
       var latitude = queryString["lat"];
       var longitude= queryString["lon"];
+      var json = queryString["json"];
       var zoom = queryString["zoom"];
+    
+      if (json) {
+        json = JSON.parse(decodeURIComponent(json));
+      }
 
       // Initialize the mapDiv data attributes.
       mapDiv.setAttribute("data-lat", latitude);
@@ -85,8 +90,16 @@
 
       // Convert the parameters to their numeric equivalent.
       // Otherwise, initializing the Leaflet map object will not work.
-      latitude = Number(latitude);
-      longitude = Number(longitude);
+      if (!json) {
+        latitude = Number(latitude);
+        longitude = Number(longitude);
+      } else {
+        // TODO 
+        // - calculate the center of multiple coordinates
+        // - calculate the zoom
+        latitude = Number(json[0].geometry.coordinates[1]);
+        longitude = Number(json[0].geometry.coordinates[0]);
+      }
       zoom = Number(zoom);
 
       var responsive = queryString["responsive"];
@@ -131,10 +144,21 @@
 
       // Add a marker in the given location.
       // Make it draggble so that user could refine the position visually.
-      var p1 = L.marker([latitude, longitude], {
-        draggable: true,
-      });
-      p1.addTo(map);
+      if (!json) {
+        var p1 = L.marker([latitude, longitude], {
+          draggable: true,
+        });
+        p1.addTo(map);
+      } else {
+        for (var i in json) {
+          var lat = Number(json[i].geometry.coordinates[1]);
+          var lon = Number(json[i].geometry.coordinates[0]);
+          var p = L.marker([lat, lon], {
+            draggable: true,
+          });
+          p.addTo(map);
+        }
+      }
 
       // Add an event listener that will keep track the changes in the
       // marker location and will update the data attribute accordingly.
