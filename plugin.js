@@ -86,7 +86,7 @@
         // Declare the widget template/structure, containing the
         // important elements/attributes. This is a required property of widget.
         template:
-          '<div id="" class="leaflet_div" data-lat="" data-lon="" data-width="" data-height="" ' +
+          '<div id="" class="leaflet_div" data-lat="" data-lon="" data-json="" data-width="" data-height="" ' +
           'data-zoom="" data-popup-text="" data-tile="" data-minimap="" data-alignment="" data-responsive=""></div>',
 
         // This will be executed when going from the View Mode to Source Mode.
@@ -109,11 +109,12 @@
           var currentZoom = mapContainer.getAttribute("data-zoom");
           var currentLat = mapContainer.getAttribute("data-lat");
           var currentLon = mapContainer.getAttribute("data-lon");
-
+          var currentJson = mapContainer.getAttribute("data-json");
           // Update the saved corresponding values in data attributes.
           element.attributes["data-zoom"] = currentZoom;
           element.attributes["data-lat"] = currentLat;
           element.attributes["data-lon"] = currentLon;
+          element.attributes["data-json"] = currentJson;
 
           // Fetch the other data attributes needed for
           // updating the full path of the map.
@@ -125,7 +126,7 @@
           var responsive = element.attributes["data-responsive"];
 
           // Build the updated full path to the map renderer.
-          var mapParserPathFull = mapParserPath + "?lat=" + currentLat + "&lon=" + currentLon + "&width=" + width + "&height=" + height + "&zoom=" + currentZoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive;
+          var mapParserPathFull = mapParserPath + "?lat=" + currentLat + "&lon=" + currentLon + "&width=" + width + "&height=" + height + "&zoom=" + currentZoom + "&text=" + popUpText + "&tile=" + tile + "&minimap=" + minimap + "&responsive=" + responsive + '&json=' + currentJson;
 
           // Update also the iframe's 'src' attributes.
           // Updating 'data-cke-saved-src' is also required for

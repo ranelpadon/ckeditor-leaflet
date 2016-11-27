@@ -142,6 +142,53 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
             },
           ]
         },
+        
+        { // Dummy element serving as label/text container only.
+          type: 'html',
+          id: 'map_label',
+          className: 'label',
+          style: 'margin-bottom: -10px;',
+          html: '<p>' + pluginTranslation.manualGeoJSONFieldLabel + '</p>'
+        },
+        
+        {
+          // Create a new horizontal group.
+          type: 'hbox',
+          // Set the relative widths of Latitude, Longitude and Zoom fields.
+          widths: [ '100%'],
+          children: [
+            {
+              id: 'geo_json',
+              className: 'geo_json',
+              type: 'textarea',
+              label: pluginTranslation.manualGeoJSON,
+            },
+          ]
+        },
+        
+        { // Dummy element serving as label/text container only.
+          type: 'html',
+          id: 'map_label',
+          className: 'label',
+          style: 'margin-bottom: -10px;',
+          html: '<p>' + pluginTranslation.manualGeoJSONURLFieldLabel + '</p>'
+        },
+
+        
+        {
+          // Create a new horizontal group.
+          type: 'hbox',
+          // Set the relative widths of Latitude, Longitude and Zoom fields.
+          widths: [ '100%'],
+          children: [
+            {
+              id: 'geo_json_url',
+              className: 'geo_json_url',
+              type: 'text',
+              label: pluginTranslation.manualGeoJSON,
+            },
+          ]
+        },
 
         {
           id: 'popup_text',
@@ -325,6 +372,24 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 // Get the Lat/Lon values from the corresponding fields.
                 var latInput = dialog.getContentElement('location_tab','map_latitude').getValue();
                 var lonInput = dialog.getContentElement('location_tab','map_longitude').getValue();
+                
+                var geoJSON, JSONStr = dialog.getContentElement('location_tab','geo_json').getValue();
+                var JSONUrl = dialog.getContentElement('location_tab','geo_json_url').getValue();
+                
+                if (JSONStr) {
+                  if (JSONStr.length > 1000) {
+                    return alert('Your GeoJSON string is too long. Please upload somewhere and add the URL bellow');
+                  }
+                  try {
+                    geoJSON = JSON.parse(JSONStr);
+                  } catch (err) {
+                    // Do nothing
+                  }
+                  geoJSON = encodeURIComponent(JSONStr);
+                }
+                if (JSONUrl && JSONUrl.indexOf('http') === 0) {
+                  geoJSON = JSONUrl;
+                }
 
                 // Get the data-lat and data-lon values.
                 // It is empty for yet to be created widgets.
@@ -396,7 +461,7 @@ CKEDITOR.dialog.add('leaflet', function(editor) {
                 widget.element.data('responsive', responsive);
 
                 // Build the full path to the map renderer.
-                mapParserPathFull = mapParserPath + '?lat=' + latitude + '&lon=' + longitude + '&width=' + width + '&height=' + height + '&zoom=' + zoom + '&text=' + popUpText + '&tile=' + tile + '&minimap=' + minimap + '&responsive=' + responsive;
+                mapParserPathFull = mapParserPath + '?lat=' + latitude + '&lon=' + longitude + '&width=' + width + '&height=' + height + '&zoom=' + zoom + '&text=' + popUpText + '&tile=' + tile + '&minimap=' + minimap + '&responsive=' + responsive + '&json=' + geoJSON;
 
                 // Create a new CKEditor DOM's iFrame.
                 var iframe = new CKEDITOR.dom.element('iframe');
